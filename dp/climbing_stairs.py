@@ -1,7 +1,7 @@
+# backtracking, brute force, recursion
+# tc O(n^2), sc O(n)
 class Solution:
     def climbStairs(self, n: int) -> int:
-        # backtracking, brute force, recursion
-        # tc O(n^2), sc O(n)
         def backtrack(n):
             if n==1:
                 return 1
@@ -10,10 +10,10 @@ class Solution:
             return backtrack(n-1)+backtrack(n-2)
         return backtrack(n)
 
-class Solution:
+# dp memoization
+# tc O(n), sc O(n)
+class Solution2:
     def climbStairs(self, n: int) -> int:
-        # dp memoization
-        # tc O(n), sc O(n)
         dp = {1:1,2:2}
         def backtrack(n):
             if n in dp:
@@ -21,11 +21,11 @@ class Solution:
             dp[n] = backtrack(n-1)+backtrack(n-2)
             return dp[n]
         return backtrack(n)
-    
-class Solution:
+
+# dp tabulation
+# time O(n) space O(n)    
+class Solution3:
     def climbStairs(self, n: int) -> int:
-        # dp tabulation
-        # time O(n) space O(n)
         if n in [0,1,2]:
             return n
         dp = [0]*(n+1)
@@ -34,10 +34,10 @@ class Solution:
             dp[i] = dp[i-1]+dp[i-2]
         return dp[-1]
 
-class Solution:
+#greedy
+# time O(n) space O(1)
+class Solution4:
     def climbStairs(self, n: int) -> int:
-        #greedy
-        # time O(n) space O(1)
         one, two= 1,1
         
         for i in range(n-1):

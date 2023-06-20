@@ -1,7 +1,7 @@
+# backtrack
+# tc O(2^n), sc O(n)
 class Solution:
     def minimumTotal(self, triangle: List[List[int]]) -> int:
-        # backtrack
-        # tc O(2^n), sc O(n)
         N = len(triangle)
         def dfs(i,j):
             if i==N:
@@ -11,10 +11,10 @@ class Solution:
             return min(lower_left,lower_right)
         return dfs(0,0)
         
-class Solution:
+# dp memoization
+# tc O(n^2), sc O(n^2)
+class Solution2:
     def minimumTotal(self, triangle: List[List[int]]) -> int:
-        # dp memoization
-        # tc O(n^2), sc O(n^2)
         N = len(triangle)
         dp = {}
         def dfs(i,j):
@@ -28,9 +28,9 @@ class Solution:
             return dp[(i,j)]
         return dfs(0,0)
 
-class Solution:
+#same as prev with inbuilt
+class Solution3:
     def minimumTotal(self, triangle: List[List[int]]) -> int:
-        #same as prev with inbuilt
         N = len(triangle)
         @cache
         def dfs(i,j):
@@ -41,10 +41,10 @@ class Solution:
             return min(lower_left,lower_right)
         return dfs(0,0)
 
-class Solution:
+# dp tabulation
+# tc O(n^2), sc O(n^2)
+class Solution4:
     def minimumTotal(self, triangle: List[List[int]]) -> int:
-        # dp tabulation
-        # tc O(n^2), sc O(n^2)
         N = len(triangle)
         dp = [[-1]*N for _ in range(N)]
         dp[N-1] = triangle[N-1]
@@ -55,10 +55,10 @@ class Solution:
                 dp[i][j] = min(lower_left,lower_right)
         return dp[0][0]
 
-class Solution:
+# dp tabulation
+# tc O(n^2), sc O(n)
+class Solution4:
     def minimumTotal(self, triangle: List[List[int]]) -> int:
-        # dp tabulation
-        # tc O(n^2), sc O(n)
         dp = [0] * (len(triangle)+1)
         for row in triangle[::-1]:
             for i,n in enumerate(row):

@@ -1,7 +1,7 @@
+# backtrack
+# tc = O(2^(m+n)), sc = O(m+n)
 class Solution:
     def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
-        # backtrack
-        # tc = O(2^(m+n)), sc = O(m+n)
         if obstacleGrid[-1][-1]:
             return 0
         m = len(obstacleGrid)
@@ -15,10 +15,10 @@ class Solution:
             return backtrack(r+1,c) + backtrack(r,c+1)
         return backtrack(0,0)
 
-class Solution:
+# dp memoization
+# tc O(m*n), sc O(m*n)
+class Solution2:
     def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
-        # dp memoization
-        # tc O(m*n), sc O(m*n)
         if obstacleGrid[-1][-1]:
             return 0
         m = len(obstacleGrid)
@@ -36,10 +36,10 @@ class Solution:
             return dp[r][c]
         return backtrack(0,0)
 
+# dp tabulation
+# tc O(m*n), sc O(m*n)
 class Solution:
     def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
-        # dp tabulation
-        # tc O(m*n), sc O(m*n)
         if obstacleGrid[-1][-1]:
             return 0
         m, n = len(obstacleGrid), len(obstacleGrid[0])
@@ -50,9 +50,10 @@ class Solution:
                 dp[i][j] = dp[i - 1][j] + dp[i][j - 1] if not obstacleGrid[i - 1][j - 1] else 0
         return dp[-1][-1]
 
+# in-place
+# tc O(m*n), O(1)
 class Solution:
     def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
-        # in-place
         if obstacleGrid[-1][-1]:
             return 0
         m, n = len(obstacleGrid), len(obstacleGrid[0])

@@ -1,6 +1,6 @@
+# backtrack
 class Solution:
     def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
-        # backtrack
         def backtrack(i,j,k):
             if i<0 and j<0 and k<0:
                 return True

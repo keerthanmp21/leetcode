@@ -1,6 +1,7 @@
+# backtrack
+# tc O(2^n), sc O(n)
 class Solution:
     def numDecodings(self, s: str) -> int:
-        # backtrack
         N = len(s)
         def backtrack(idx):
             if idx == N:
@@ -13,10 +14,10 @@ class Solution:
             return res
         return backtrack(0)
 
-class Solution:
+#dp memoization
+# tc O(n), sp O(n)
+class Solution2:
     def numDecodings(self, s: str) -> int:
-        #dp memoization
-        # tc O(n), sp O(n)
         N = len(s)
         if N==0:
             return 0
@@ -35,10 +36,10 @@ class Solution:
             return dp[idx]
         return backtrack(0)
 
-class Solution:
+# dp tabulation
+# tc O(n), sc O(n)
+class Solution3:
     def numDecodings(self, s: str) -> int:
-        # dp tabulation
-        # tc O(n), sc O(n)
         dp = {len(s):1}
         
         for i in range(len(s)-1,-1,-1):

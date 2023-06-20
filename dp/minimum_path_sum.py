@@ -1,7 +1,7 @@
+# brute force or backtrack
+# tc O(2^(m*n)), sc O(1)
 class Solution:
     def minPathSum(self, grid: List[List[int]]) -> int:
-        # brute force or backtrack
-        # tc O(2^(m*n))
         ROWS = len(grid)
         COLS = len(grid[0])
         def backtrack(r,c):
@@ -15,10 +15,10 @@ class Solution:
 
         return  backtrack(ROWS-1, COLS-1)
 
-class Solution:
+# dp memoization
+# tc O(m*n), sc O(m*n)
+class Solution2:
     def minPathSum(self, grid: List[List[int]]) -> int:
-        # dp memoization
-        # tc O(m*n), sc O(m*n)
         ROWS = len(grid)
         COLS = len(grid[0])
         dp = {}
@@ -37,10 +37,10 @@ class Solution:
             return dp[(r,c)]
         return backtrack(ROWS-1, COLS-1)
 
-class Solution:
+#dp tabulation
+# tc O(m*n), sc O(1)
+class Solution3:
     def minPathSum(self, grid: List[List[int]]) -> int:
-        #dp tabulation
-        # tc O(m*n), sc O(1)
         ROWS = len(grid)
         COLS = len(grid[0])
         for r in range(ROWS):

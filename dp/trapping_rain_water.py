@@ -1,7 +1,7 @@
+#two pointers
+#tc O(n), sc O(1)
 class Solution:
-    def trap(self, height: List[int]) -> int:
-        #two pointers
-        #time O(n)
+    def trap(self, height):
         if not height:
             return 0
         l,r = 0, len(height)-1
@@ -18,11 +18,10 @@ class Solution:
                 res += rightMax-height[r]
         return res
 
-class Solution:
-    def trap(self, height: List[int]) -> int:
-        #monotonic stack
-        # time O(n)
-        
+#monotonic stack
+# tc O(n), sc O(n)
+class Solution2:
+    def trap(self, height):
         stack = []
         traps = 0
         #monotonic decreasing stack
@@ -37,12 +36,11 @@ class Solution:
 
             stack.append(i)
         return traps
-        
-class Solution:
-    def trap(self, height: List[int]) -> int:
 
-        #brute force
-        #tle O(n^2)
+#brute force
+#tc O(n^2), sc O(1)
+class Solution3:
+    def trap(self, height):
         N = len(height)
         traps = 0
 
@@ -60,10 +58,10 @@ class Solution:
 
         return traps
         
-class Solution:
-    def trap(self, height: List[int]) -> int:
-        #dp
-        # O(n)
+# dp iterative
+# tc O(n), sc O(n)
+class Solution4:
+    def trap(self, height):
         N = len(height)
         if N<=2:
             return 0
