@@ -88,7 +88,7 @@ class Solution:
                 elif transactionLeft == 0:
                     res = 0
                 else:
-                    # no transaction today 
+                    # no transaction today
                     res1 = dp[day + 1][transactionLeft]
 
                     res2 = 0
