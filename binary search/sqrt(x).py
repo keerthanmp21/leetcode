@@ -6,9 +6,9 @@ class Solution:
         l, r = 0, x
         while l <= r:
             mid = (l + r) // 2
-            if x < mid * mid:
+            if x < mid * mid: # check whether sqrt comes b/w l and mid
                 r = mid-1
-            elif x > (mid + 1) * (mid + 1):
+            elif x > (mid + 1) * (mid + 1):# check whether sqrt comes b/w mid and r
                 l = mid + 1
             elif mid * mid <= x < (mid + 1) * (mid + 1):
                 return mid
