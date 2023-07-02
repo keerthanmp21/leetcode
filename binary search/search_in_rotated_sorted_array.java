@@ -1,7 +1,7 @@
 public class search_in_rotated_sorted_array {
     
 }
-// tc O(nlogn), sc O(1)
+// tc O(logn), sc O(1)
 class Solution {
     public int search(int[] nums, int target) {
         int l = 0, r = nums.length-1;
