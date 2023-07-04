@@ -1,12 +1,6 @@
 import java.util.HashSet;
-
-public class longest_substring_without_repeating_characters {
-    
-}
-
-// sliding window
 // tc O(n), sc O(n)
-class Solution {
+public class longest_substring_without_repeating_characters {
     public int lengthOfLongestSubstring(String s) {
         HashSet<Character> charSet = new HashSet<Character>();
         int l = 0, res = 0;

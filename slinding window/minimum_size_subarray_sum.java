@@ -1,9 +1,5 @@
-public class minimum_size_subarray_sum {
-    
-}
-// sliding window
 // tc O(n), sc O(1)
-class Solution {
+public class minimum_size_subarray_sum {
     public int minSubArrayLen(int target, int[] nums) {
         int l=0, res=Integer.MAX_VALUE, total=0;
         for(int r=0;r<nums.length;r++){
@@ -20,4 +16,5 @@ class Solution {
             return res;
         }
     }
+
 }

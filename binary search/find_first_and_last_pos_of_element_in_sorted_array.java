@@ -1,8 +1,5 @@
-public class find_first_and_last_pos_of_element_in_sorted_array {
-    
-}
 // tc O(logn), sc O(1)
-class Solution {
+public class find_first_and_last_pos_of_element_in_sorted_array {
     public int[] searchRange(int[] nums, int target) {
         int left = getLeft(nums, target);
         int right = getRight(nums, target);

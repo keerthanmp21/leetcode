@@ -1,9 +1,6 @@
 import java.util.*;
-public class find_all_anagrams_in_string {
-    
-}
 // tc O(n), sc O(n)
-class Solution {
+public class find_all_anagrams_in_string {
     public List<Integer> findAnagrams(String s, String p) {
         int sLen = s.length(), pLen = p.length();
         if(pLen>sLen){
@@ -61,4 +58,5 @@ class Solution {
 
 
     }
+
 }
