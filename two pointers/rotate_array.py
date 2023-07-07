@@ -1,3 +1,4 @@
+from typing import List
 # brute force
 # tc O(kn), sc O(n)
 class Solution:

@@ -1,3 +1,4 @@
+from typing import List
 # two pointers
 # tc O(n), sc O(1)
 class Solution:

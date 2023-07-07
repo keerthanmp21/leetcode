@@ -1,3 +1,4 @@
+from typing import List
 # brute force
 # tc O(n^3), sc O(n)
 class Solution:
@@ -22,7 +23,7 @@ class Solution:
         nums.sort()
         N = len(nums)
         for i, value in enumerate(nums):
-            if i>0 and nums[i] == nums[i-1]:
+            if i>0 and nums[i] == nums[i-1]:#check duplicate
                 continue
             l = i+1
             r = N-1
@@ -35,6 +36,6 @@ class Solution:
                 else:
                     result.append([nums[i],nums[l],nums[r]])
                     l += 1
-                    while l<r and nums[l] == nums[l-1]:
+                    while l<r and nums[l] == nums[l-1]:#check duplicate
                         l += 1
         return result

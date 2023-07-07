@@ -1,3 +1,4 @@
+from typing import List
 # sorting
 # tc O(nlogn), sc O(1)
 class Solution:

@@ -1,3 +1,4 @@
+from typing import List
 # two pointers and sorting
 # tc O(mlogm+nlogn), sc O(n)
 class Solution:
