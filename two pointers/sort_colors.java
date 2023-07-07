@@ -1,19 +1,16 @@
 import java.util.Arrays;
 
-// sorting
-// tc O(nlogn), sc O(1)
-class Solution {
+
+public class sort_colors {
+    // sorting
+    // tc O(nlogn), sc O(1)
     public void sortColors(int[] nums) {
         Arrays.sort(nums);
-
-        
     }
-}
 
-//count sort
-// tc O(n), sc O(3)
-class Solution2 {
-    public void sortColors(int[] nums) {
+    //count sort
+    // tc O(n), sc O(3)
+    public void sortColors2(int[] nums) {
         int[] sort = new int[3];
         for(int i=0; i<nums.length;i++){
             sort[nums[i]]++;
@@ -25,12 +22,10 @@ class Solution2 {
             }
         }
     }
-}
 
-// two pointers
-// tc O(n), sc O(n)
-class Solution3 {
-    public void sortColors(int[] nums) {
+    // two pointers
+    // tc O(n), sc O(n)
+    public void sortColors3(int[] nums) {
         int i=0, l=0, r=nums.length-1;
         while(i<=r){
             if(nums[i]==0){

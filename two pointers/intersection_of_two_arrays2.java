@@ -1,7 +1,7 @@
 import java.util.*;
 // two pointers and sorting
 // tc O(nlogn+mlogm), sc O(n)
-class Solution {
+public class intersection_of_two_arrays2 {
     public int[] intersect(int[] nums1, int[] nums2) {
         Arrays.sort(nums1);
         Arrays.sort(nums2);

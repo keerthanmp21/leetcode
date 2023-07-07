@@ -1,6 +1,6 @@
 // two pointers
 // tc O(n), sc O(1)
-class Solution {
+public class is_subsequence {
     public boolean isSubsequence(String s, String t) {
         int p1=0, p2=0;
         while(p1<s.length() && p2<t.length()){

@@ -1,4 +1,4 @@
-class Solution {
+public class rotate_array {
     public void rotate(int[] nums, int k) {
         int N = nums.length;
         if(k>N){

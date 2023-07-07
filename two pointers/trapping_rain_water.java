@@ -1,6 +1,6 @@
 //two pointers
 //tc O(n), sc O(1)
-class Solution {
+public class trapping_rain_water {
     public int trap(int[] height) {
         if(height.length==0){
             return 0;

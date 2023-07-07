@@ -1,6 +1,6 @@
 // two pointers
 // tc O(n), sc O(1)
-class Solution {
+public class reverse_string {
     public void reverseString(char[] s) {
         int l=0, r=s.length-1;
         while(l<r){

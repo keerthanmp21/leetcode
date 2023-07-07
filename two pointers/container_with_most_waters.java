@@ -1,4 +1,4 @@
-class Solution {
+public class container_with_most_waters {
     public int maxArea(int[] height) {
         int l = 0;
         int r = height.length-1;

@@ -1,4 +1,4 @@
-class Solution {
+public class find_the_index_of_the_first_occurence_of_string {
     public int strStr(String haystack, String needle) {
         int l1=0, l2=0, r1=haystack.length(), r2=needle.length();
         while(l1<r1){

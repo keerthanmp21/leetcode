@@ -1,7 +1,4 @@
 public class happy_number {
-    
-}
-class Solution {
     public boolean isHappy(int n) {
         int fast=n, slow=n;
         while(true){

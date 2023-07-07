@@ -1,6 +1,6 @@
 // two pointers
 // tc O(n), sc O(1)
-class Solution {
+public class two_sum2_input_array_sorted {
     public int[] twoSum(int[] numbers, int target) {
         int l=0, r=numbers.length-1;
         while(l<r){
