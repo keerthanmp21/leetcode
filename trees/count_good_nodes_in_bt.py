@@ -8,6 +8,7 @@ class TreeNode:
         self.left = left
         self.right = right
 class Solution:
+    # bfs
     def goodNodes(self, root: TreeNode) -> int:
         res = 0
         q = deque()
@@ -27,7 +28,8 @@ class Solution:
                 
         return res
 
-        '''
+    # dfs
+    def goodNodes2(self, root: TreeNode) -> int:
         def dfs(node, maxVal):
             if not node:
                 return 0
@@ -37,4 +39,3 @@ class Solution:
             res += dfs(node.right, maxVal)
             return res
         return dfs(root, root.val)
-        '''
