@@ -1,8 +1,9 @@
 from collections import defaultdict, deque
 from typing import List
 
-# bfs
 class Solution:
+    # bfs
+    # tc O(m*n) m = len(word), n = len(worddict)
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
         if endWord not in wordList:
             return 0

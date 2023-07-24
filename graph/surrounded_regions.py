@@ -3,6 +3,7 @@ from collections import deque
 
 class Solution:
     # dfs
+    # tc O(rows*cols), sc O(rows*cols)
     def solve(self, board: List[List[str]]) -> None:
         """
         Do not return anything, modify board in-place instead.
@@ -36,6 +37,7 @@ class Solution:
                     board[r][c] = 'O'
     
     # bfs
+    # tc O(rows*cols), sc O(rows*cols)
     def solve(self, board: List[List[str]]) -> None:
         ROWS, COLS = len(board), len(board[0])
         q = deque([])

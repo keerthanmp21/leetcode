@@ -3,6 +3,7 @@ from collections import deque
 
 class Solution:
     # dfs
+    # tc O(m*n), sc O(m*n)
     def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
         ROWS, COLS = len(matrix), len(matrix[0])
         dp = {}
@@ -55,13 +56,14 @@ class Solution:
         return maxValue
     
     # topological sort (bfs)
+    # tc O(m*n), sc O(m*n)
     def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
         # idea, use topological sort, search around to find the # of incoming nodes, start with zero indegree with queue, pop from queue, search around and reduce the indegree by 1; push to queue if indegree is 0. output the steps. Time O(mn) and Space O(mn).
         if not matrix:
             return 0
         ROWS, COLS = len(matrix), len(matrix[0])
         directions = [[1,0],[-1,0],[0,1],[0,-1]]
-        cache = {}
+        outdegree = {}# hashmap or list of list
         q = deque()
         
         for r in range(ROWS):
@@ -71,7 +73,7 @@ class Solution:
                     dr, dc = r+d[0], c+d[1]
                     if(0 <= dr < ROWS) and (0 <= dc < COLS) and matrix[dr][dc] < matrix[r][c]:
                         cnt += 1
-                cache[(r,c)] = cnt# map point to the # of incoming degree
+                outdegree[(r,c)] = cnt# map point to the # of incoming degree
                 if cnt == 0:
                     q.append((r,c))
 
@@ -81,9 +83,9 @@ class Solution:
                 r, c = q.popleft()
                 for d in directions:
                     dr, dc = r+d[0], c+d[1]
-                    if(0 <= dr < ROWS) and (0 <= dc < COLS) and matrix[dr][dc] > matrix[r][c] and (r,c) in cache:
-                        cache[(dr,dc)] -= 1
-                        if cache[(dr,dc)] == 0:
+                    if(0 <= dr < ROWS) and (0 <= dc < COLS) and matrix[dr][dc] > matrix[r][c] and (r,c) in outdegree:
+                        outdegree[(dr,dc)] -= 1
+                        if outdegree[(dr,dc)] == 0:
                             q.append((dr,dc))
             res += 1
         
