@@ -40,7 +40,7 @@ class Solution:
 
         return max(dist) if max(dist) < float('inf') else -1
     
-    # spfa (shortes path fastest algorithm)
+    # spfa (shortest path fastest algorithm)
     # tc O(E), sc O(V+E)
     def networkDelayTime3(self, times: List[List[int]], n: int, k: int) -> int:
         dist = [float('inf')]*n
