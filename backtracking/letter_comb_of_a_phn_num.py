@@ -1,6 +1,7 @@
 from typing import List
 
 class Solution:
+    # tc O(3^n), sc O(n)
     def letterCombinations(self, digits: str) -> List[str]:
         res = []
         digitToChar = {"2":"abc",
