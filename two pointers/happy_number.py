@@ -1,7 +1,7 @@
 class Solution:
     def isHappy(self, n: int) -> bool:
         visit = set()
-        while n not in visit:
+        while n not in visit: # iterate until cycle detect or n becomes 1(return)
             visit.add(n)
             n = self.sumOfSquares(n)
             if n == 1:
