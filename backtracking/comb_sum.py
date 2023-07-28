@@ -1,6 +1,7 @@
 from typing import List
 
 class Solution:
+    # tc O(2^n), sc O(n)
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         res = []
         candidatesLen = len(candidates)

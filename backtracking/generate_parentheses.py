@@ -2,6 +2,7 @@ from typing import List
 
 class Solution:
     # backtracking
+    # tc O(2^n), sc O(n)
     def generateParenthesis(self, n: int) -> List[str]:
         res = []
         def backtrack(openN, closedN, curStr):
