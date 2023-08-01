@@ -1,6 +1,7 @@
 class Solution:
+    # two pointers
+    # tc O(n^2), sc O(1)
     def longestPalindrome(self, s: str) -> str:
-        # two pointers
         res = ""
         resLen = 0
         
@@ -25,33 +26,33 @@ class Solution:
                 
         return res
     
-# brute force
-# tc O(n^3), sp O(1)    
-class Solution2:
-    def longestPalindrome(self, s: str) -> str:
+    # brute force
+    # tc O(n^3), sp O(1)    
+    def longestPalindrome2(self, s: str) -> str:
         N = len(s)
+        startingIndex = 0
         maxLen = 0
-        starting_index = 0
-        def isPali(i,j):
-            while i<j:
-                if s[i]!=s[j]:
+
+        def isPali(l,r):
+            while l < r:
+                if s[l] != s[r]:
                     return False
-                i += 1
-                j -= 1
+                l += 1
+                r -= 1
             return True
 
-        for l in range(0,N):
-            for r in range(l,N):
-                if isPali(l,r):
-                    if (r-l+1)>maxLen:
-                        maxLen = r-l+1
-                        starting_index = l
-        return s[starting_index:starting_index+maxLen]
+        for i in range(len(s)):
+            for j in range(i, len(s)):
+                if isPali(i,j):
+                    if (j-i+1) > maxLen:
+                        maxLen = (j-i+1)
+                        startingIndex = i
 
-# dp tabulation (bottom up) iterative
-# tc O(n^2), sc O(n^2)
-class Solution3:
-    def longestPalindrome(self, s: str) -> str:
+        return s[startingIndex:startingIndex+maxLen]
+
+    # dp tabulation (bottom up) iterative
+    # tc O(n^2), sc O(n^2)
+    def longestPalindrome3(self, s: str) -> str:
         sLen = len(s)
         dp = [[False]*sLen for _ in range(sLen)]
         #filling out the diagonal by 1
@@ -73,9 +74,3 @@ class Solution3:
                             longest_palindrome = s[i:j+1]
 
         return longest_palindrome
-
-
-
-
-
-
