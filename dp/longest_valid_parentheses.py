@@ -1,6 +1,6 @@
-# stack
-# tc O(n), sc O(n)
 class Solution:
+    # stack
+    # tc O(n), sc O(n)
     def longestValidParentheses(self, s: str) -> int:
         stack = [-1]
         res = 0
@@ -15,10 +15,9 @@ class Solution:
                     res = max(res,i-stack[-1])
         return res
         
-#dp tabulation
-# tc O(n), sc O(n)
-class Solution2:
-    def longestValidParentheses(self, s: str) -> int:
+    #dp tabulation
+    # tc O(n), sc O(n)
+    def longestValidParentheses2(self, s: str) -> int:
         N = len(s)
         dp = [0]*N
         res = 0
@@ -33,6 +32,3 @@ class Solution2:
                 res = max(res, dp[i])
                 leftCount -= 1
         return res    
-
-
-
