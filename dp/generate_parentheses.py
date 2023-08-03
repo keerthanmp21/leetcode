@@ -1,9 +1,9 @@
 from typing import List
 
-# recursion
-# O(2^n), O(n)
 class Solution:
-    def generateParenthesis(self, n: int) -> List[str]:
+    # recursion
+    # O(2^n), O(n)
+    def generateParenthesis2(self, n: int) -> List[str]:
         res = []
         def backtrack(openN, closedN, curStr):
             if len(curStr) == n*2:
@@ -16,8 +16,7 @@ class Solution:
         backtrack(0,0,'')
         return res
 
-# dp tabulation
-class Solution2:
+    # dp tabulation
     def generateParenthesis(self, n: int) -> List[str]:
         dp = [[] for i in range(n + 1)]
         dp[0].append('')
