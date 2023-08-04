@@ -1,6 +1,7 @@
-# recursion
-# tc O(2^n), sc O(n)
+
 class Solution:
+    # recursion
+    # tc O(2^n), sc O(n)
     def isMatch(self, s: str, p: str) -> bool:
         lenS = len(s)
         lenP = len(p)
@@ -21,10 +22,9 @@ class Solution:
         return recursion(0,0)
         
 
-# dp memoization
-# tc O(n^2), sc O(n)
-class Solution2:
-    def isMatch(self, s: str, p: str) -> bool:
+    # dp memoization
+    # tc O(n^2), sc O(n)
+    def isMatch2(self, s: str, p: str) -> bool:
         lenS = len(s)
         lenP = len(p)
         cache = {}
@@ -48,10 +48,9 @@ class Solution2:
         return recursion(0,0)
         
 
-class Solution3:
+    # dp tabulation
+    # tc O(m*n), sc O(m*n)
     def isMatch(self, s: str, p: str) -> bool:
-        # dp tabulation
-        # tc O(m*n), sc O(m*n)
         lenS = len(s)
         lenP = len(p)
         dp = [[False]*(lenP+1) for _ in range(lenS+1)]
