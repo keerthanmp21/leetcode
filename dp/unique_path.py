@@ -1,7 +1,7 @@
-#backtracking
-# tc = O(2^(m+n)), sc = O(m+n)
 class Solution:
-    def uniquePaths(self, m: int, n: int) -> int:
+    # backtracking
+    # tc = O(2^(m+n)), sc = O(m+n)
+    def uniquePaths1(self, m: int, n: int) -> int:
         def helper(r,c):
             if r == m-1 or c == n-1:
                 return 1
@@ -11,10 +11,9 @@ class Solution:
             return helper(r+1,c) +helper(r,c+1)
         return helper(0,0)
 
-# dp top down, memoization
-# time O(m*n), space O(m*n)
-class Solution2:
-    def uniquePaths(self, m: int, n: int) -> int:
+    # dp top down, memoization
+    # time O(m*n), space O(m*n)
+    def uniquePaths2(self, m: int, n: int) -> int:
         dp = [[-1 for _ in range(n + 1)] for _ in range(m + 1)]
     
         def helper(r,c):
@@ -29,10 +28,9 @@ class Solution2:
         
         return helper(0,0)   
 
-#dp tabulation
-#tc = O(m*n), sc = O(m*n)
-class Solution2:
-    def uniquePaths(self, m: int, n: int) -> int:
+    # dp tabulation
+    # tc = O(m*n), sc = O(m*n)
+    def uniquePaths3(self, m: int, n: int) -> int:
         dp = [[1]*n for i in range(m)]
         for i in range(1,m):
             for j in range(1,n):
