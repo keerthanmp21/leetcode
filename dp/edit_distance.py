@@ -1,7 +1,7 @@
-#backtrack
-# tc O(3^n), sc O(n)
 class Solution:
-    def minDistance(self, word1: str, word2: str) -> int:
+    #backtrack
+    # tc O(3^n), sc O(n)
+    def minDistance1(self, word1: str, word2: str) -> int:
         M = len(word1)
         N = len(word2)
         def backtrack(i,j):
@@ -21,10 +21,9 @@ class Solution:
             return res
         return backtrack(0, 0)
     
-# dp memoization
-# tc O(n^3), sc O(1) 
-class Solution2:
-    def minDistance(self, word1: str, word2: str) -> int:
+    # dp memoization
+    # tc O(n^3), sc O(1) 
+    def minDistance2(self, word1: str, word2: str) -> int:
         
         M = len(word1)
         N = len(word2)
@@ -49,10 +48,9 @@ class Solution2:
 
         return dfs(0, 0)
 
-# dp tabulation
-# tc O(m*n), sc O(m*n)
-class Solution3:
-    def minDistance(self, word1: str, word2: str) -> int:
+    # dp tabulation
+    # tc O(m*n), sc O(m*n)
+    def minDistance3(self, word1: str, word2: str) -> int:
         M = len(word1)
         N = len(word2)
         dp = [[0]*(N+1) for _ in range(M+1)]
