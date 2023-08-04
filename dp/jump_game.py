@@ -1,7 +1,8 @@
-#backtrack
-# tc = O(n^n), sc = O(n)
+from functools import lru_cache
 class Solution:
-    def canJump(self, nums):
+    # backtrack
+    # tc = O(n^n), sc = O(n)
+    def canJump1(self, nums):
         N = len(nums)
         def backtrack(ind):
             if ind == N-1:
@@ -15,10 +16,9 @@ class Solution:
             return False
         return backtrack(0)
         
-# dp top down
-# tc = O(n*n), sc = O(n)+O(n) stack with dp
-class Solution2:
-    def canJump(self, nums):
+    # dp top down
+    # tc = O(n*n), sc = O(n)+O(n) stack with dp
+    def canJump2(self, nums):
         N = len(nums)
         dp = [-1]*N
         def backtrack(ind):
@@ -38,8 +38,7 @@ class Solution2:
         return backtrack(0)
         
 
-class Solution3:
-    def canJump(self, nums):
+    def canJump3(self, nums):
         n = len(nums)
         @lru_cache(None)
         def dp(i):
@@ -53,10 +52,9 @@ class Solution3:
         
         return dp(0)
     
-# dp tabulation
-# tc O(n^2), sc O(n)
-class Solution4:
-    def canJump(self, nums):
+    # dp tabulation
+    # tc O(n^2), sc O(n)
+    def canJump4(self, nums):
         n = len(nums)
         dp = [False] * n
         dp[n-1] = True
@@ -71,10 +69,9 @@ class Solution4:
                     break
         return dp[0]
 
-# greedy
-# tc O(n), sc O(1)
-class Solution:
-    def canJump(self, nums):
+    # greedy
+    # tc O(n), sc O(1)
+    def canJump5(self, nums):
         goal = len(nums)-1
         for i in range(len(nums)-2, -1, -1):
             if i+nums[i] >= goal:
