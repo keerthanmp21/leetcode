@@ -1,3 +1,5 @@
+from typing import List
+
 # tc O(log(m+n)), sc O(1)
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:

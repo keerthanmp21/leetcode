@@ -1,3 +1,5 @@
+from typing import List
+
 # tc O(logn), sc O(1)
 class Solution:
     def searchInsert(self, nums: List[int], target: int) -> int:
