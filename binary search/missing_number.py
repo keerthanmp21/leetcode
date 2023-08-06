@@ -1,3 +1,5 @@
+from typing import List
+
 # greedy
 # tc O(n), sc O(1)
 class Solution:
