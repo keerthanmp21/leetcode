@@ -32,7 +32,7 @@ class Solution:
         N = len(prices)
         dp = [0] * N
         dp[N - 1] = prices[N - 1]
-
+        # in dp we will store max price from that index to last index
         for i in range(N - 2, -1, -1):
             dp[i] = max(prices[i], dp[i + 1])
 
@@ -46,7 +46,7 @@ class Solution:
     # tc O(n), sc O(1)
     def maxProfit4(self, prices: List[int]) -> int:
         profit = 0
-        minPrice = float("infinity")
+        minPrice = float("infinity") # min price from 0 to i'th pos
         for i in range(len(prices)):
             profit = max(profit, prices[i] - minPrice)
             minPrice = min(minPrice, prices[i])
