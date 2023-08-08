@@ -4,7 +4,7 @@ from functools import lru_cache
 class Solution:
     # backtrack
     # tc O(2^n)
-    def wordBreak1(self, s: str, wordDict: List[str]) -> bool:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         wordDictSet = set(wordDict)
         N = len(s)
 
