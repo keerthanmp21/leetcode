@@ -1,16 +1,17 @@
-#brute force O(m*n)
+from typing import List
+
 class Solution:
-    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+    # brute force O(m*n)
+    def searchMatrix1(self, matrix: List[List[int]], target: int) -> bool:
         COLS, ROWS = len(matrix[0]), len(matrix)
         for i in range(ROWS):
             for j in range(COLS):
                 if matrix[i][j] == target:
                     return True
         return False
-    
-# binary search O(m*log(n))
-class Solution2:
-    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+
+    # binary search O(m*log(n))
+    def searchMatrix2(self, matrix: List[List[int]], target: int) -> bool:
         ROWS, COLS = len(matrix), len(matrix[0])
 
         for row in range(ROWS):
@@ -18,7 +19,7 @@ class Solution2:
             r = len(matrix[row]) - 1
             while l <= r:
                 # mid = (l+r)//2
-                mid = l + ((r-l) // 2)
+                mid = l + ((r - l) // 2)
                 if target > matrix[row][mid]:
                     l = mid + 1
                 elif target < matrix[row][mid]:
