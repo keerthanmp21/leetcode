@@ -1,12 +1,10 @@
-# two pointers
-# tc O(n), sc O(1)
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        l, r = 0, len(s)-1
-        while l<r:
-            while l<r and not self.isAlphaNumeric(s[l]):
+        l, r = 0, len(s) - 1
+        while l < r:
+            while l < r and not self.isAlphaNumeric(s[l]):
                 l += 1
-            while l<r and not self.isAlphaNumeric(s[r]):
+            while l < r and not self.isAlphaNumeric(s[r]):
                 r -= 1
             if s[l].lower() != s[r].lower():
                 return False
@@ -15,7 +13,9 @@ class Solution:
         return True
 
     def isAlphaNumeric(self, c):
-        #return c.isalnum()
-        return ((ord('A')<=ord(c)<=ord('Z')) or
-        (ord('a')<=ord(c)<=ord('z')) or 
-        (ord('0')<=ord(c)<=ord('9')))
+        # return c.isalnum()
+        return (
+            (ord("A") <= ord(c) <= ord("Z"))
+            or (ord("a") <= ord(c) <= ord("z"))
+            or (ord("0") <= ord(c) <= ord("9"))
+        )
