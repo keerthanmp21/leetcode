@@ -12,7 +12,7 @@ class Solution:
         wordList.append(beginWord)
         for word in wordList:
             for i in range(len(word)):
-                pattern = word[:i] + "*" + word[i+1:]
+                pattern = word[:i] + "*" + word[i + 1 :]
                 adj_dict[pattern].append(word)
 
         q = deque([beginWord])
@@ -24,7 +24,7 @@ class Solution:
                 if word == endWord:
                     return res
                 for i in range(len(word)):
-                    pattern = word[:i] + "*" + word[i+1:]
+                    pattern = word[:i] + "*" + word[i + 1 :]
                     for adj_word in adj_dict[pattern]:
                         if adj_word not in visited:
                             visited.add(adj_word)
