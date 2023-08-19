@@ -1,56 +1,66 @@
 from typing import List
-import collections
+from collections import defaultdict, deque
+
 
 class Solution:
-    #dfs
-    def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
-        edges = collections.defaultdict(dict)
-        for (pt1,pt2), value in zip(equations,values):
-            edges[pt1][pt2] = value
-            edges[pt2][pt1] = 1/value
-        visit = set()
+    # dfs
+    def calcEquation1(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
+        edges = defaultdict(dict)
+        for (pt1, pt2), val in zip(equations, values):
+            edges[pt1][pt2] = val
+            edges[pt2][pt1] = 1/val
+
+        visited = set()
         result = []
 
         def dfs(cur, dest, totalVal):
             if cur == dest:
                 return totalVal
-            for key, value in edges[cur].items():
-                if key not in visit:
-                    visit.add(key)
-                    result = dfs(key, dest,value*totalVal)
-                    if result != -1:
-                        return result
-                    visit.remove(key)
+            for nei, val in edges[cur].items():
+                if nei not in visited:
+                    visited.add(nei)
+                    res = dfs(nei, dest, totalVal * val)
+                    if res != -1:
+                        return res
+                    visited.remove(nei)
             return -1
 
-
         for src, dest in queries:
-            result.append(dfs(src,dest,1) if src in edges else -1)
-            visit = set()
+            result.append(dfs(src, dest, 1) if src in edges else -1)
+            visited = set()
+
         return result
 
     # bfs
     def calcEquation2(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
-        edges = collections.defaultdict(dict)
-        for (pt1,pt2), value in zip(equations,values):
-            edges[pt1][pt2] = value
-            edges[pt2][pt1] = 1/value
+        edges = {}
+        for (pt1, pt2), val in zip(equations, values):
+            if pt1 not in edges:
+                edges[pt1] = {pt2 : val}
+            else:
+                edges[pt1][pt2] = val
+            if pt2 not in edges:
+                edges[pt2] = {pt1 : 1/val}
+            else:
+                edges[pt2][pt1] = 1/val
         result = []
+
         for src, dest in queries:
-            q = collections.deque()
-            visit = set()
+            q = deque()
+            visitSet = set()
             totalVal = -1
             if src in edges:
-                q.append((src,1))
-                visit.add(src)
+                q.append((src, 1))
+                visitSet.add(src)
             while q:
-                cur, value = q.popleft()
+                cur, val = q.popleft()
                 if cur == dest:
-                    totalVal = value
+                    totalVal = val
                     break
-                for edge_key, edg_value in edges[cur].items():
-                    if edge_key not in visit:
-                        visit.add(edge_key)
-                        q.append((edge_key,edg_value*value))
+                for nei, neiVal in edges[cur].items():
+                    if nei not in visitSet:
+                        visitSet.add(nei)
+                        q.append((nei, val * neiVal))
             result.append(totalVal)
+
         return result
