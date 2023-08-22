@@ -12,7 +12,7 @@ class Solution:
             visitSet.add(key)
             for neiKey in rooms[key]:
                 dfs(neiKey)
-            
+
         dfs(0)
         return len(visitSet) == len(rooms)
 
