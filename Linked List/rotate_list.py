@@ -1,9 +1,12 @@
 from typing import Optional
+
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
+
+
 class Solution:
     def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
         if not head:
@@ -24,7 +27,7 @@ class Solution:
         k = k % total_length
         cur = head
         # Traverse the list to get to the node just before the ( length - k )th node.
-        for _ in range(total_length-k-1):
+        for _ in range(total_length - k - 1):
             cur = cur.next
 
         output = cur.next
