@@ -1,8 +1,11 @@
-# heap(priority queue)
-# tc O(nlogk), sc O(1)
+from typing import List
 import heapq
+
+
 class Solution:
-    def findKthLargest(self, nums: List[int], k: int) -> int:
+    # heap(priority queue)
+    # tc O(nlogk), sc O(1)
+    def findKthLargest1(self, nums: List[int], k: int) -> int:
         minHeap = []
         for num in nums:
             heapq.heappush(minHeap, num)
@@ -10,11 +13,9 @@ class Solution:
                 heapq.heappop(minHeap)
 
         return heapq.heappop(minHeap)
-        
 
-# sorting
-# tc O(nlogn), sc O(1)
-class Solution2:
-    def findKthLargest(self, nums: List[int], k: int) -> int:
+    # sorting
+    # tc O(nlogn), sc O(1)
+    def findKthLargest2(self, nums: List[int], k: int) -> int:
         nums.sort()
-        return nums[len(nums)-k]
+        return nums[len(nums) - k]
