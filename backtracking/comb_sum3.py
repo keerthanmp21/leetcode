@@ -1,5 +1,6 @@
 from typing import List
 
+
 class Solution:
     def combinationSum3(self, k: int, n: int) -> List[List[int]]:
         result = []
@@ -12,14 +13,12 @@ class Solution:
                     return result.append(subset.copy())
                 else:
                     return
-            
+
             subset.append(i)
-            dfs(i+1, subset)
+            dfs(i + 1, subset)
             subset.pop()
-            dfs(i+1, subset)
+            dfs(i + 1, subset)
 
-
-        dfs(1,[])
+        dfs(1, [])
 
         return result
-            
