@@ -1,7 +1,7 @@
 from typing import List
 
 class Solution:
-    def subsets(self, nums: List[int]) -> List[List[int]]:
+    def subsets1(self, nums: List[int]) -> List[List[int]]:
         res = []
         subset = []
 
@@ -11,16 +11,15 @@ class Solution:
                 return
 
             subset.append(nums[i])
-            dfs(i+1)
+            dfs(i + 1)
             subset.pop()
-            dfs(i+1)
+            dfs(i + 1)
 
         dfs(0)
         return res
 
-    def subsets(self, nums: List[int]) -> List[List[int]]:
+    def subsets2(self, nums: List[int]) -> List[List[int]]:
         res = [[]]
         for n in nums:
-            res += [r+[n] for r in res]
+            res += [r + [n] for r in res]
         return res
-        
