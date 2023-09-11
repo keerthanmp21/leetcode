@@ -7,7 +7,7 @@ class TreeNode:
         self.right = right
 class Solution:
     # recursion
-    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def inorderTraversal1(self, root: Optional[TreeNode]) -> List[int]:
         if not root:
             return []
         return self.inorderTraversal(root.left) + [root.val] + self.inorderTraversal(root.right)
