@@ -12,11 +12,11 @@ class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         if not root:
             return 0
-        l = 1+self.maxDepth(root.left)
-        r = 1+self.maxDepth(root.right)
-        return max(l,r)
+        l = 1 + self.maxDepth(root.left)
+        r = 1 + self.maxDepth(root.right)
+        return max(l, r)
 
-    #bfs
+    # bfs
     def maxDepth2(self, root: Optional[TreeNode]) -> int:
         if not root:
             return 0
@@ -31,4 +31,3 @@ class Solution:
                 if node.right:
                     q.append(node.right)
         return res
-        
