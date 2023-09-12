@@ -1,4 +1,6 @@
 from typing import Optional
+
+
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -12,7 +14,9 @@ class Solution:
     def checkPath(self, root, curSum, targetSum):
         if not root:
             return False
-        if not root.left and not root.right: # leaf node
+        if not root.left and not root.right:  # leaf node
             return curSum + root.val == targetSum
 
-        return (self.checkPath(root.left, curSum+root.val, targetSum) or self.checkPath(root.right, curSum+root.val, targetSum))
+        return self.checkPath(
+            root.left, curSum + root.val, targetSum
+        ) or self.checkPath(root.right, curSum + root.val, targetSum)
