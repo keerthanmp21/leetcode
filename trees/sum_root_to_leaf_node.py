@@ -7,6 +7,8 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
+
+
 class Solution:
     # dfs
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
@@ -16,15 +18,15 @@ class Solution:
             if root:
                 # leaf node
                 if not root.left and not root.right:
-                    pathSum = pathSum*10 + root.val
+                    pathSum = pathSum * 10 + root.val
                     res[0] += pathSum
-                dfs(root.left, pathSum*10+root.val)
-                dfs(root.right, pathSum*10+root.val)
+                dfs(root.left, pathSum * 10 + root.val)
+                dfs(root.right, pathSum * 10 + root.val)
 
         dfs(root, 0)
         return res[0]
-    
-    #bfs
+
+    # bfs
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
         q = deque([root])
         res = 0
@@ -34,10 +36,10 @@ class Solution:
             if not node.left and not node.right:
                 res += node.val
             if node.left:
-                node.left.val += node.val*10
+                node.left.val += node.val * 10
                 q.append(node.left)
             if node.right:
-                node.right.val += node.val*10
+                node.right.val += node.val * 10
                 q.append(node.right)
-        
+
         return res
