@@ -7,6 +7,8 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
+
+
 class Solution:
     # dfs
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
@@ -16,15 +18,14 @@ class Solution:
 
         def dfs(node, level):
             if not node:
-                return 
+                return
             if level == len(res):
                 res.append(node.val)
-            dfs(node.right, level+1)
-            dfs(node.left, level+1)
+            dfs(node.right, level + 1)
+            dfs(node.left, level + 1)
 
         dfs(root, 0)
         return res
-        
 
     # bfs
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
@@ -32,7 +33,7 @@ class Solution:
             return []
         q = deque([root])
         res = []
-        
+
         while q:
             res.append(q[-1].val)
             for _ in range(len(q)):
