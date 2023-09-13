@@ -10,8 +10,7 @@ class Node:
 
 
 class Solution:
-    def connect(self, root: 'Node') -> 'Node':
-        
+    def connect(self, root: "Node") -> "Node":
         if not root:
             return None
         q = deque([root])
@@ -21,7 +20,7 @@ class Solution:
                 cur = q.popleft()
                 cur.next = rightNode
                 rightNode = cur
-                if cur.right: # leaf node will not have child
+                if cur.right:  # leaf node will not have child
                     q.append(cur.right)
                 if cur.left:
                     q.append(cur.left)

@@ -12,7 +12,7 @@ class Node:
 class Solution:
     # bfs
     # tc O(n), sc O(n)
-    def connect(self, root: 'Optional[Node]') -> 'Optional[Node]':
+    def connect1(self, root: "Optional[Node]") -> "Optional[Node]":
         if not root:
             return root
         q = deque([root])
@@ -27,9 +27,9 @@ class Solution:
                     q.append(node.left)
         return root
 
-    #dfs
+    # dfs
     # tc O(n), sc O(logn)
-    def connect(self, root: 'Optional[Node]') -> 'Optional[Node]':
+    def connect2(self, root: "Optional[Node]") -> "Optional[Node]":
         if not root:
             return None
         leftNode, rightNode, nextNode = root.left, root.right, root.next
@@ -40,5 +40,3 @@ class Solution:
             self.connect(leftNode)
             self.connect(rightNode)
         return root
-
-
