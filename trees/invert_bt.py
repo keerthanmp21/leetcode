@@ -7,19 +7,20 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
+
+
 class Solution:
     # dfs(recursive)
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         if not root:
             return root
-        
+
         l = self.invertTree(root.right)
         r = self.invertTree(root.left)
         root.left = l
         root.right = r
 
         return root
-        
 
     # dfs(stack)
     def invertTree2(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
@@ -31,7 +32,7 @@ class Solution:
                 stack.extend([node.right, node.left])
 
         return root
-        
+
     # bfs
     def invertTree3(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         q = deque([root])
@@ -40,6 +41,6 @@ class Solution:
             if node:
                 node.right, node.left = node.left, node.right
                 q.append(node.left)
-                q.append(node.right)         
+                q.append(node.right)
 
         return root
