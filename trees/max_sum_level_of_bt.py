@@ -7,10 +7,12 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
+
+
 class Solution:
-    #bfs
+    # bfs
     def maxLevelSum(self, root: Optional[TreeNode]) -> int:
-        maxSum, level, maxLevel = float('-inf'), 0, 0
+        maxSum, level, maxLevel = float("-inf"), 0, 0
         q = deque([root])
         while q:
             level += 1
@@ -25,10 +27,11 @@ class Solution:
             if level_sum > maxSum:
                 maxSum, maxLevel = level_sum, level
         return maxLevel
-    
+
     # dfs
     def maxLevelSum(self, root: Optional[TreeNode]) -> int:
         l = []
+
         def dfs(node, level):
             if not node:
                 return
@@ -36,7 +39,8 @@ class Solution:
                 l.append(node.val)
             else:
                 l[level] += node.val
-            dfs(node.left, level+1)
-            dfs(node.right, level+1)
+            dfs(node.left, level + 1)
+            dfs(node.right, level + 1)
+
         dfs(root, 0)
-        return 1+l.index(max(l))
+        return 1 + l.index(max(l))
