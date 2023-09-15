@@ -7,9 +7,11 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
+
+
 class Solution:
     # bfs
-    def averageOfLevels(self, root: Optional[TreeNode]) -> List[float]:
+    def averageOfLevels1(self, root: Optional[TreeNode]) -> List[float]:
         q = deque([root])
         res = []
         while q:
@@ -21,20 +23,21 @@ class Solution:
                 if node.right:
                     q.append(node.right)
                 temp.append(node.val)
-            res.append(sum(temp)/len(temp))
+            res.append(sum(temp) / len(temp))
         return res
-        
 
     # dfs
     def averageOfLevels2(self, root: Optional[TreeNode]) -> List[float]:
         res = []
+
         def dfs(node, depth):
             if node:
                 if len(res) <= depth:
-                    res.append([0,0])
+                    res.append([0, 0])
                 res[depth][0] += node.val
                 res[depth][1] += 1
-                dfs(node.left, depth+1)
-                dfs(node.right, depth+1)
+                dfs(node.left, depth + 1)
+                dfs(node.right, depth + 1)
+
         dfs(root, 0)
-        return [sumVal/cnt  for sumVal, cnt in res]
+        return [sumVal / cnt for sumVal, cnt in res]
