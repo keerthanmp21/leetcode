@@ -7,25 +7,26 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
+
+
 class Solution:
     # bfs
     def goodNodes(self, root: TreeNode) -> int:
         res = 0
         q = deque()
-        q.append((root,-inf))
-        	
+        q.append((root, -inf))
 
         while q:
-            node,maxval = q.popleft()
-            if node.val >= maxval:  
+            node, maxval = q.popleft()
+            if node.val >= maxval:
                 res += 1
-				
+
             if node.left:
-                q.append((node.left,max(maxval,node.val)))
-            
+                q.append((node.left, max(maxval, node.val)))
+
             if node.right:
-                q.append((node.right,max(maxval,node.val)))
-                
+                q.append((node.right, max(maxval, node.val)))
+
         return res
 
     # dfs
@@ -38,4 +39,5 @@ class Solution:
             res += dfs(node.left, maxVal)
             res += dfs(node.right, maxVal)
             return res
+
         return dfs(root, root.val)
