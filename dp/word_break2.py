@@ -1,5 +1,6 @@
 from typing import List
 
+
 class Solution:
     # backtracking
     # tc O(len(wordDict)^len(s)), sc O(n)

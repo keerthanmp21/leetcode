@@ -1,6 +1,7 @@
 from typing import List
 from functools import cache
 
+
 class Solution:
     # brute force
     # tc O(n^2), sc O(1)
