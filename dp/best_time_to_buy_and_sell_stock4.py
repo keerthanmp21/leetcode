@@ -1,5 +1,6 @@
 from typing import List
 
+
 class Solution:
     # recursion
     # tc O(2^n), sc O(n)

@@ -1,5 +1,6 @@
 from typing import List
 
+
 class Solution:
     # two pointers
     # tc O(n), sp O(1)
@@ -46,7 +47,7 @@ class Solution:
     # tc O(n), sc O(1)
     def maxProfit4(self, prices: List[int]) -> int:
         profit = 0
-        minPrice = float("infinity") # min price from 0 to i'th pos
+        minPrice = float("infinity")  # min price from 0 to i'th pos
         for i in range(len(prices)):
             profit = max(profit, prices[i] - minPrice)
             minPrice = min(minPrice, prices[i])
