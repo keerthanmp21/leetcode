@@ -1,0 +1,5 @@
+1) r -> 0 to N, l = 0
+    l += 1 (based on some cond logic)
+
+2) r -> 0 to N, l = 0
+    l = r
