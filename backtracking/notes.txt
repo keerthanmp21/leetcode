@@ -1,0 +1,18 @@
+=> input
+    string, int, list, mixed((int, int), (int, list))
+
+=> output
+    int, list, list of list, boolean, string
+
+=> parameters
+    index, list, string, int(to compare with)
+
+=> base condition
+    index == N (or compare index with some number)
+    compare list or string with target
+    could be 1 or more base condition
+
+=> calling recursively
+
+1) n^n = include all possibility (for loop)
+2) 2^n = include or not include
