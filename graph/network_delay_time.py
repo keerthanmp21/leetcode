@@ -5,7 +5,7 @@ from collections import defaultdict, deque
 
 
 class Solution:
-    # dijstra (shortest path) => bfs (using min heap)
+    # dijkstra (shortest path) => bfs (using min heap)
     # tc O(Elogv)
     def networkDelayTime1(self, times: List[List[int]], n: int, k: int) -> int:
         edges = collections.defaultdict(list)
