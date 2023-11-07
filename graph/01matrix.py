@@ -37,28 +37,26 @@ class Solution:
         # bfs
         ROWS, COLS = len(mat), len(mat[0])
         q = deque()
-        visit = set()
+        visited = set()
+        directions = [[0,1],[0,-1],[1,0],[-1,0]]
+        dist = 0
 
         for r in range(ROWS):
             for c in range(COLS):
                 if mat[r][c] == 0:
                     q.append((r,c))
-                    visit.add((r,c))
+                    visited.add((r,c))
 
-        dist = 0
-        directions = [[1,0],[-1,0],[0,1],[0,-1]]
         while q:
             for _ in range(len(q)):
-                r, c = q.popleft()
+                r,c = q.popleft()
                 mat[r][c] = dist
                 for d in directions:
-                    dr = r+d[0]
-                    dc = c+d[1]
-                    if (dr<0 or dr==ROWS) or (dc<0 or dc==COLS) or (dr,dc) in visit or mat[dr][dc] == 0:
+                    dr, dc = r + d[0], c + d[1]
+                    if(dr < 0 or dr == ROWS or dc < 0 or dc == COLS or (dr,dc) in visited or mat[dr][dc] == 0):
                         continue
                     q.append((dr,dc))
-                    visit.add((dr,dc))
+                    visited.add((dr,dc))
             dist += 1
 
         return mat
-                
