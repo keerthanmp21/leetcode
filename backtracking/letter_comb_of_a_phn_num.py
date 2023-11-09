@@ -2,7 +2,7 @@ from typing import List
 
 
 class Solution:
-    # tc O(3^n), sc O(n)
+    # tc O(m^n) (m = 3,4)(n = length of digits), sc O(n) 
     def letterCombinations(self, digits: str) -> List[str]:
         N = len(digits)
         res = []
