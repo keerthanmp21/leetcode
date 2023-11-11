@@ -49,6 +49,10 @@ class Solution:
 
     # dp tabulation
     # tc O(n), sc O(n)
+    '''
+        At each index, we update dp[1][i] as max between either only choosing current element - nums[i] or extending from previous subarray and choosing current element as well - dp[1][i-1] + nums[i]
+Similarly, dp[0][1] can be updated as max between maximum sum subarray found till last index - dp[0][i-1] or max subarray sum found ending at current index dp[1][i]
+'''
     def maxSubArray4(self, nums: List[int]) -> int:
         dp = [[0] * len(nums) for _ in range(2)]
         dp[0][0], dp[1][0] = nums[0], nums[0]
