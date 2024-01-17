@@ -49,13 +49,13 @@ class Solution:
 
     # dp tabulation
     # tc O(n), sc O(n)
-    '''
-        At each index, we update dp[1][i] as max between either only choosing current element - nums[i] or extending from previous subarray and choosing current element as well - dp[1][i-1] + nums[i]
-Similarly, dp[0][1] can be updated as max between maximum sum subarray found till last index - dp[0][i-1] or max subarray sum found ending at current index dp[1][i]
-'''
     def maxSubArray4(self, nums: List[int]) -> int:
         dp = [[0] * len(nums) for _ in range(2)]
         dp[0][0], dp[1][0] = nums[0], nums[0]
+        '''
+        At each index, we update dp[1][i] as max between either only choosing current element = nums[i] or extending from previous subarray and choosing current element as well = dp[1][i-1] + nums[i]
+Similarly, dp[0][1] can be updated as max between maximum sum subarray found till last index = dp[0][i-1] or max subarray sum found ending at current index dp[1][i]
+'''
         for i in range(1, len(nums)):
             # maximum subarray sum ending at i (including nums[i])
             dp[1][i] = max(nums[i], nums[i] + dp[1][i - 1])
@@ -63,7 +63,19 @@ Similarly, dp[0][1] can be updated as max between maximum sum subarray found til
             dp[0][i] = max(dp[0][i - 1], dp[1][i])
         return dp[0][-1]
 
+    # optimized above approach
     def maxSubArray5(self, nums: List[int]) -> int:
+        N = len(nums)
+        dp = [0] * N
+        res = dp[0] = nums[0]
+
+        for i in range(1,N):
+            dp[i] = max(nums[i], nums[i] + dp[i-1])
+            res = max(res, dp[i])
+
+        return res
+
+    def maxSubArray6(self, nums: List[int]) -> int:
         dp = [*nums]
         for i in range(1, len(nums)):
             dp[i] = max(nums[i], nums[i] + dp[i - 1])
@@ -71,7 +83,7 @@ Similarly, dp[0][1] can be updated as max between maximum sum subarray found til
 
     # greedy
     # time O(n), sc O(1)
-    def maxSubArray6(self, nums: List[int]) -> int:
+    def maxSubArray7(self, nums: List[int]) -> int:
         res = nums[0]
         total = 0
         for n in nums:
@@ -89,8 +101,7 @@ Similarly, dp[0][1] can be updated as max between maximum sum subarray found til
             cur_max = max(cur_max, cur_max + n)
             max_till_now = max(max_till_now, cur_max)
         return max_till_now
-
-
+    
 # recursive
 """
                                                 f(0, False)                       🔽 => repeated calculations
