@@ -4,6 +4,7 @@ from typing import List
 class Solution:
     def findItinerary(self, tickets: List[List[str]]) -> List[str]:
         adj = {src: [] for src, dst in tickets}
+        # adj_dict = defaultdict(list)
         tickets.sort()
         for src, dst in tickets:
             adj[src].append(dst)
