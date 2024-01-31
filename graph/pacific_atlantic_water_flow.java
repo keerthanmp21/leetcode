@@ -1,3 +1,7 @@
+public class pacific_atlantic_water_flows {
+    
+}
+
 class Solution {
     private int ROWS;
     private int COLS;

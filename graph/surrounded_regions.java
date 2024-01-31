@@ -1,3 +1,7 @@
+public class surrounded_regions {
+    
+}
+
 class Solution {
     private int ROWS, COLS;
     private final int[][] directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};

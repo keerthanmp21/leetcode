@@ -1,3 +1,7 @@
+public class snakes_and_ladder {
+    
+}
+
 class Solution {
     public int snakesAndLadders(int[][] board) {
         int N = board.length;

@@ -1,3 +1,7 @@
+public class evaluate_division {
+    
+}
+
 class Solution {
     public double[] calcEquation1(List<List<String>> equations, double[] values, List<List<String>> queries) {
         Map<String, Map<String, Double>> edges = new HashMap<>();

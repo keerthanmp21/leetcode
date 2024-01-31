@@ -1,3 +1,7 @@
+public class keys_and_rooms {
+    
+}
+
 class Solution {
     public boolean canVisitAllRooms1(List<List<Integer>> rooms) {
         Set<Integer> visited = new HashSet<>();

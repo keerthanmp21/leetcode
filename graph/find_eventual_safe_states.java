@@ -1,3 +1,7 @@
+public class find_eventual_safe_states {
+    
+}
+
 class Solution {
     // dfs
     public List<Integer> eventualSafeNodes1(int[][] graph) {

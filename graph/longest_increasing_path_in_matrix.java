@@ -1,3 +1,7 @@
+public class longest_increasing_path_in_matrix {
+    
+}
+
 class Solution {
     // dfs
     // tc O(m*n), sc O(m*n)

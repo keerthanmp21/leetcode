@@ -1,3 +1,7 @@
+public class rotting_oranges {
+    
+}
+
 class Solution {
     public int orangesRotting(int[][] grid) {
         Queue<int[]> q = new ArrayDeque<>();

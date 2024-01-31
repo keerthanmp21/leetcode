@@ -1,3 +1,7 @@
+public class course_schedule2 {
+    
+}
+
 public class Solution {
     public int[] findOrder1(int numCourses, int[][] prerequisites) {
         Map<Integer, List<Integer>> prereq = new HashMap<>();

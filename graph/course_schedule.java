@@ -1,3 +1,7 @@
+public class course_schedule {
+    
+}
+
 class Solution {
     private Map<Integer, List<Integer>> preMap;
     private Set<Integer> visitSet;

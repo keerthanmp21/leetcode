@@ -1,3 +1,7 @@
+public class word_search {
+    
+}
+
 class Solution {
     private int ROWS, COLS;
     private Set<String> path;
