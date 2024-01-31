@@ -1,4 +1,4 @@
-class Solution {
+public class Solution {
     public int nearestExit(char[][] maze, int[] entrance) {
         int ROWS = maze.length;
         int COLS = maze[0].length;
