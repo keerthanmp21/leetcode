@@ -3,34 +3,41 @@ from collections import deque, defaultdict
 
 class Solution:
     # union find
-    def findRedundantConnection2(self, edges: List[List[int]]) -> List[int]:
-        parent = [i for i in range(len(edges)+1)]
-        rank = [1] * (len(edges)+1)
-        
+    # time O(n), space O(n)
+    def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
+        parent = [i for i in range(len(edges) + 1)]
+        weight = [1 for i in range(len(edges) + 1)]
+
         def find(n):
             p = parent[n]
             while p != parent[p]:
-                parent[p] = parent[parent[p]]
+                parent[p] = parent[parent[p]] # path compression (it is an option), grandfather
                 p = parent[p]
-            return p
-        
-        def union(n1,n2):
-            p1,p2 = find(n1),find(n2)
+            return p   
+
+        def union(n1, n2):
+            p1, p2 = find(n1), find(n2)
+
             if p1 == p2:
                 return False
-            if rank[p1] > rank[p2]:
-                parent[p2] = p1
-                rank[p1] += rank[p2]
-            else:
+
+            if weight[p2] > weight[p1]:
                 parent[p1] = p2
-                rank[p2] += rank[p1]
+                weight[p2] += weight[p1]
+            else:
+                parent[p2] = p1
+                weight[p1] += weight[p2]
+
             return True
-        
+
         for n1, n2 in edges:
-            if not union(n1,n2):
+            if not union(n1, n2):
                 return [n1,n2]
 
-    def findRedundantConnection3(self, edges: List[List[int]]) -> List[int]:
+
+    # dfs
+    # time O(n^2), space O(n^2)
+    def findRedundantConnection2(self, edges: List[List[int]]) -> List[int]:
         N = len(edges)
         edges_list = defaultdict(list)
         
@@ -58,7 +65,8 @@ class Solution:
         return []
 
     # bfs
-    def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
+    # time O(n^2), space O(n^2)
+    def findRedundantConnection3(self, edges: List[List[int]]) -> List[int]:
         N = len(edges)
         edges_list = defaultdict(list)
 
@@ -75,6 +83,8 @@ class Solution:
                         q.append(neiNode)
 
             return False
+
+
 
         for src, dest in edges:
             visitSet = set()
