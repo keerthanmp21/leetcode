@@ -5,9 +5,10 @@ class Solution:
     # brute force
     # tc O(n^2), sc O(n)
     def maxArea1(self, height: List[int]) -> int:
+        N = len(height)
         res = 0
-        for i in range(len(height) - 1):
-            for j in range(i + 1, len(height)):
+        for i in range(N - 1):
+            for j in range(i + 1, N):
                 area = (j - i) * min(height[i], height[j])
                 res = max(res, area)
         return res
