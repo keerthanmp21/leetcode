@@ -6,53 +6,51 @@ class Solution:
     # dfs
     def eventualSafeNodes(self, graph: List[List[int]]) -> List[int]:
         n = len(graph)
+        res = []
         safe = {}
 
-        def dfs(i):
-            if i in safe:
-                return safe[i]
-            safe[i] = False
-            for nei in graph[i]:
-                if not dfs(nei):
-                    return safe[i]
-            safe[i] = True
-            return safe[i]
+        def dfs(node):
+            if node in safe:
+                return safe[node]
+            safe[node] = False
+            # if there is no nei then it is safe
+            # or if all nei nodes are safe then it is safe
+            for neiNode in graph[node]:
+                if not dfs(neiNode):
+                    return False
+            safe[node] = True
+            return True
 
-        res = []
-        for i in range(n):
-            if dfs(i):
-                res.append(i)
+        for node in range(n):
+            if dfs(node):
+                res.append(node)
 
         return res
 
     # bfs(topological sort)
     def eventualSafeNodes(self, graph: List[List[int]]) -> List[int]:
         N = len(graph)
-        edges = [[] for i in range(N)]
-        indegree = [0] * N
+        indegree_edges = [[] for i in range(N)]
+        outdegree = [0] * N
 
         for i in range(N):
-            indegree[i] = len(graph[i])
+            outdegree[i] = len(graph[i])
             for j in graph[i]:
-                edges[j].append(i)
-
+                indegree_edges[j].append(i)
+        
         q = deque()
         res = [] * N
-        for i in range(N):
-            if indegree[i] == 0:
-                q.append(i)
+        for node in range(N):
+            if outdegree[node] == 0:
+                q.append(node)
 
         while q:
-            u = q.popleft()
-            res.append(u)
-            for i in edges[u]:
-                if indegree[i] != 0:
-                    indegree[i] -= 1
-                if indegree[i] == 0:
-                    q.append(i)
+            cur_node = q.popleft()
+            res.append(cur_node)
+            for nei_node in indegree_edges[cur_node]:
+                if outdegree[nei_node] != 0:
+                    outdegree[nei_node] -= 1
+                if outdegree[nei_node] == 0:
+                    q.append(nei_node)
 
         return sorted(res)
-
-
-s = Solution()
-print(s.eventualSafeNodes([[1, 2], [2, 3], [5], [0], [5], [], []]))
