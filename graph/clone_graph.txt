@@ -1,0 +1,33 @@
+=> DFS
+### Time Complexity:
+1. **DFS Traversal**:
+   - The function performs a DFS starting from the given `node`. 
+   It visits each node once and explores all of its neighbors recursively. 
+   Since every node and edge is visited exactly once, the traversal takes (O(V + E)), 
+   where (V) is the number of nodes and (E) is the number of edges in the graph.
+   
+2. **Cloning Nodes and Neighbors**:
+   - For each node, a new `Node` object is created, which takes constant time. 
+   Additionally, appending the neighbors to the `neighbors` list of each node also 
+   takes constant time for each edge.
+   - Since both nodes and edges are processed exactly once, the total time spent 
+   cloning nodes and their neighbors is (O(V + E)).
+
+Thus, the overall **time complexity** is (O(V + E)), 
+where (V) is the number of nodes and (E) is the number of edges in the graph.
+
+### Space Complexity:
+1. **Recursion Stack**:
+   - Since the algorithm uses DFS, the recursion stack can grow up to the maximum depth of the graph traversal, which in the worst case could be \(O(V)\), where \(V\) is the number of nodes (if the graph is a tree or a linear chain).
+
+2. **Hash Map (`oldToNew`)**:
+   - The hash map `oldToNew` stores a mapping from each original node to its cloned counterpart. This hash map holds one entry per node, so it takes \(O(V)\) space.
+
+3. **Cloned Graph**:
+   - The cloned graph requires space for \(V\) nodes and \(E\) edges. This takes \(O(V + E)\) space.
+
+Thus, the overall **space complexity** is \(O(V + E)\), which includes the recursion stack, the hash map, and the space required to store the cloned graph.
+
+### Final Complexities:
+- **Time Complexity**: \(O(V + E)\)
+- **Space Complexity**: \(O(V + E)\), where \(V\) is the number of nodes and \(E\) is the number of edges in the graph. The recursion stack contributes to an additional \(O(V)\) factor in space usage.
