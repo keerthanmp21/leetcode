@@ -29,3 +29,23 @@ class Solution:
             l2 = l2.next if l2 else None
 
         return dummy.next
+    
+'''
+The `addTwoNumbers` function adds two numbers represented by two linked lists. 
+Here's the time and space complexity analysis for this function:
+
+### Time Complexity
+The time complexity of the function is (O(max(m, n))), 
+where (m) is the length of the first linked list (`l1`) and (n) is the length of the 
+second linked list (`l2`). This is because we traverse both lists completely at most 
+once, processing each node and any carry.
+
+### Space Complexity
+The space complexity is (O(max(m, n))) as well, because we create a new linked list 
+to store the result. The size of this result list can be at most the length of the 
+longer input list plus one additional node in case of a carry at the end.
+
+### Summary
+- **Time Complexity:** (O(max(m, n)))
+- **Space Complexity:** (O(max(m, n)))
+'''
