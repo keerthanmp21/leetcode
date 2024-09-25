@@ -33,3 +33,29 @@ class Solution:
         output = cur.next
         cur.next = None
         return output
+
+'''
+The `rotateRight` function rotates a linked list to the right by (k) places. 
+Let's analyze its time and space complexity.
+
+### Time Complexity
+The time complexity of this function is (O(n)), where (n) is the number of nodes in 
+the linked list. The function performs the following operations:
+1. It traverses the linked list once to find the total length and the tail of the list
+(which takes (O(n))).
+2. It computes the effective rotations needed (`k % total_length`).
+3. It traverses the list again to find the new tail (which takes another (O(n)) in
+ the worst case).
+
+Since both key operations are linear with respect to the number of nodes, the overall
+ time complexity remains (O(n)).
+
+### Space Complexity
+The space complexity is (O(1)) because the function uses a constant amount of extra space. 
+It only utilizes a few pointers (`total_length`, `tail`, `cur`, and `output`), 
+regardless of the size of the linked list.
+
+### Summary
+- **Time Complexity:** (O(n))
+- **Space Complexity:** (O(1))
+'''
