@@ -10,33 +10,34 @@ class ListNode:
 
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
-        stack = []
-        lenght = 0
+        total_length = 0
         temp = head
+
         while temp:
-            lenght += 1
+            total_length += 1
             temp = temp.next
 
+        stack = []
         temp = head
-        if lenght % 2:  # odd
-            curCnt = 0
-            while curCnt <= lenght // 2:
-                curCnt += 1
+        cur_count = 0
+
+        if total_length % 2: #odd
+            while cur_count < total_length // 2:
                 stack.append(temp.val)
+                cur_count += 1
                 temp = temp.next
-            stack.pop()
-        else:  # even
-            curCnt = 0
-            temp = head
-            while curCnt < lenght // 2:
-                curCnt += 1
+            temp = temp.next
+        else:
+            while cur_count < total_length // 2:
                 stack.append(temp.val)
+                cur_count += 1
                 temp = temp.next
 
         while stack:
             if temp.val != stack.pop():
                 return False
             temp = temp.next
+
         return True
 
 '''
