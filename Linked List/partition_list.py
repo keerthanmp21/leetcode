@@ -6,16 +6,20 @@ class ListNode:
         self.next = next
 class Solution:
     def partition(self, head: Optional[ListNode], x: int) -> Optional[ListNode]:
-        head1 = temp1 = ListNode(0)
-        head2 = temp2 = ListNode(0)
+        head1 = ListNode(0)
+        p1 = head1
+        head2 = ListNode(0)
+        p2 = head2
+
         while head:
             if head.val < x:
-                temp1.next = head
-                temp1 = temp1.next
+                p1.next = head
+                p1 = p1.next
             else:
-                temp2.next = head
-                temp2 = temp2.next
+                p2.next = head
+                p2 = p2.next
             head = head.next
-        temp2.next = None
-        temp1.next = head2.next
+
+        p2.next = None
+        p1.next = head2.next
         return head1.next
