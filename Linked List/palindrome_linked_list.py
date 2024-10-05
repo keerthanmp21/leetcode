@@ -21,17 +21,13 @@ class Solution:
         temp = head
         cur_count = 0
 
-        if total_length % 2: #odd
-            while cur_count < total_length // 2:
-                stack.append(temp.val)
-                cur_count += 1
-                temp = temp.next
+        while cur_count < total_length // 2:
+            stack.append(temp.val)
+            cur_count += 1
             temp = temp.next
-        else:
-            while cur_count < total_length // 2:
-                stack.append(temp.val)
-                cur_count += 1
-                temp = temp.next
+        if total_length % 2: #odd
+            temp = temp.next
+        
 
         while stack:
             if temp.val != stack.pop():
@@ -39,7 +35,7 @@ class Solution:
             temp = temp.next
 
         return True
-
+    
 '''
 To analyze the time and space complexity of the given `isPalindrome` function, let's 
 break it down:
