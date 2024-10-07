@@ -35,12 +35,13 @@ class Solution:
         res = []
 
         while q:
-            res.append(q[-1].val)
+            res.append(q[0].val)
             for _ in range(len(q)):
                 node = q.popleft()
-                if node.left:
-                    q.append(node.left)
+                
                 if node.right:
                     q.append(node.right)
+                if node.left:
+                    q.append(node.left)
 
         return res
