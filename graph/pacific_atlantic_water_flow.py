@@ -73,4 +73,4 @@ class Solution:
                         q.append((dr, dc))
             return visit
 
-        return bfs(pacific) & bfs(atlantic)
+        return list(bfs(pacific) & bfs(atlantic))
