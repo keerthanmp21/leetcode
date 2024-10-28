@@ -23,3 +23,36 @@ class Solution:
 
         return -1
                 
+
+'''
+
+### Time Complexity
+
+1. **Traversal of the Maze:**
+   - The BFS algorithm explores each cell in the maze. In the worst case, you may need 
+   to visit every cell.
+   - Let \( R \) be the number of rows and \( C \) be the number of columns. The total 
+   number of cells is \( R \times C \).
+
+2. **Checking Valid Moves:**
+   - For each cell, the algorithm checks up to 4 possible directions (up, down, left, 
+   right).
+   - Therefore, the time complexity is \( O(R \times C) \).
+
+### Space Complexity
+
+1. **Queue for BFS:**
+   - In the worst case, the queue can hold all cells in the maze, which is \( O(R 
+   \times C) \).
+   - The queue stores the positions of the cells that are being processed.
+
+2. **Visited Set:**
+   - The visited set also stores the coordinates of each cell visited, leading to 
+   \( O(R \times C) \) space usage in the worst case.
+
+### Summary
+
+- **Time Complexity:** \( O(R \times C) \)
+- **Space Complexity:** \( O(R \times C) \)
+
+'''

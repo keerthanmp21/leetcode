@@ -47,3 +47,41 @@ class Solution:
         return False
 
 
+'''
+
+### (DFS)
+
+**Time Complexity:**
+- In the worst case, the DFS explores all nodes and edges. 
+- The time complexity is \(O(V + E)\), where \(V\) is the number of vertices (nodes) 
+and \(E\) is the number of edges. This is because each node and edge is processed once.
+
+**Space Complexity:**
+- The space complexity primarily comes from the recursion stack and the visited set.
+- The maximum depth of the recursion can go up to \(O(V)\) in the worst case (if the 
+graph is a linear chain).
+- The visited set also requires \(O(V)\) space.
+- Thus, the overall space complexity is \(O(V)\).
+
+### `validPath` (BFS)
+
+**Time Complexity:**
+- Similar to DFS, in the worst case, BFS also explores all nodes and edges.
+- The time complexity is \(O(V + E)\).
+
+**Space Complexity:**
+- The space complexity for BFS comes from the queue and the visited set.
+- The queue can hold up to \(O(V)\) nodes in the worst case.
+- The visited set requires \(O(V)\) space as well.
+- Therefore, the overall space complexity is \(O(V)\).
+
+### Summary
+
+- **`validPath1` (DFS):**
+  - Time Complexity: \(O(V + E)\)
+  - Space Complexity: \(O(V)\)
+
+- **`validPath` (BFS):**
+  - Time Complexity: \(O(V + E)\)
+  - Space Complexity: \(O(V)\)
+'''
