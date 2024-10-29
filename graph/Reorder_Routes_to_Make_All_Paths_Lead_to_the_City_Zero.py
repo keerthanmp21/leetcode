@@ -45,3 +45,59 @@ class Solution:
                     q.append(neiCity)
                     
         return changes
+    
+'''
+
+### (DFS)
+
+**Time Complexity:**
+1. **Building the Neighbors Dictionary:**
+   - Constructing the `neighbors` dictionary takes \(O(n + m)\), where \(n\) is the 
+   number of cities and \(m\) is the number of connections.
+2. **DFS Traversal:**
+   - The DFS visits each node once, leading to a time complexity of \(O(n + m)\).
+
+Overall, the time complexity is:
+O(n + m)
+
+**Space Complexity:**
+1. **Neighbors Dictionary:**
+   - The neighbors dictionary uses \(O(n + m)\) space.
+2. **Visited Set:**
+   - The visited set uses \(O(n)\) space.
+3. **Recursion Stack:**
+   - The maximum depth of the recursion can go up to \(O(n)\) in the worst case.
+
+Overall, the space complexity is:
+O(n + m)
+
+### (BFS)
+
+**Time Complexity:**
+1. **Building the Edges Dictionary:**
+   - Similar to the first method, constructing the edges dictionary takes \(O(n + m)\).
+2. **BFS Traversal:**
+   - The BFS processes each node once and examines each edge, leading to a time
+     complexity of \(O(n + m)\).
+
+Overall, the time complexity is:
+O(n + m)
+
+**Space Complexity:**
+1. **Edges Dictionary:**
+   - The edges dictionary uses \(O(n + m)\) space.
+2. **Visited Set:**
+   - The visited set uses \(O(n)\) space.
+3. **Queue for BFS:**
+   - The queue can store up to \(O(n)\) nodes in the worst case.
+
+Overall, the space complexity is:
+O(n + m)
+### Summary
+
+For both methods:
+
+- **Time Complexity:** \(O(n + m)\)
+- **Space Complexity:** \(O(n + m)\)
+
+'''
