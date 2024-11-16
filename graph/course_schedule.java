@@ -1,4 +1,4 @@
-package graph;
+import java.util.*;
 
 public class course_schedule {
     

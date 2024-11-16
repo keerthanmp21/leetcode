@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class evaluate_division {
     
 }
@@ -10,8 +12,8 @@ class Solution {
             String pt2 = equations.get(i).get(1);
             double val = values[i];
 
-            edges.putIfAbsent(pt1, new HashMap());
-            edges.putIfAbsent(pt2, new HashMap());
+            edges.putIfAbsent(pt1, new HashMap<>());
+            edges.putIfAbsent(pt2, new HashMap<>());
 
             edges.get(pt1).put(pt2, val);
             edges.get(pt2).put(pt1, 1/val);
@@ -61,7 +63,7 @@ class Solution {
             String pt2 = equations.get(i).get(1);
             double val = values[i];
 
-            edges.putIfAbsent(pt1, new HashMap());
+            edges.putIfAbsent(pt1, new HashMap<>());
             edges.putIfAbsent(pt2, new HashMap());
 
             edges.get(pt1).put(pt2, val);

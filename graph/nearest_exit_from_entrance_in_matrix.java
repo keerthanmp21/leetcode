@@ -1,8 +1,10 @@
+import java.util.*;
+
 public class nearest_exit_from_entrance_in_matrix {
     
 }
 
-public class Solution {
+class Solution {
     public int nearestExit(char[][] maze, int[] entrance) {
         int ROWS = maze.length;
         int COLS = maze[0].length;

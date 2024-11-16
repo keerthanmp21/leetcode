@@ -1,3 +1,5 @@
+import java.util.*;
+
 class Solution {
     // brute force
     // time O(n * (n or len of longest)), space O(n)

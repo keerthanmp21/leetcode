@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class find_eventual_safe_states {
     
 }
@@ -35,7 +37,7 @@ class Solution {
         int N = graph.length;
         List<List<Integer>> edges = new ArrayList<>(N);
         for(int i = 0; i < N; i++){
-            edges.add(new ArrayList());
+            edges.add(new ArrayList<>());
         }
         int[] indegree = new int[N];
         for(int i = 0; i < N; i++){

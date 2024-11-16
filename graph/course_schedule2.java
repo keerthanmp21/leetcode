@@ -1,8 +1,10 @@
+import java.util.*;
+
 public class course_schedule2 {
     
 }
 
-public class Solution {
+class Solution {
     public int[] findOrder1(int numCourses, int[][] prerequisites) {
         Map<Integer, List<Integer>> prereq = new HashMap<>();
         for(int i = 0; i < numCourses; i++){
@@ -12,7 +14,7 @@ public class Solution {
             prereq.get(pair[0]).add(pair[1]);
         }
 
-        List<Integer> output = new ArrayList();
+        List<Integer> output = new ArrayList<>();
         Set<Integer> cycle = new HashSet<>();
         Set<Integer> visit = new HashSet<>();
 
@@ -57,7 +59,7 @@ public class Solution {
         }
         int[] degrees = new int[numCourses];
         List<Integer> output = new ArrayList<>();
-        Queue<Integer> queue = new LinkedList<>();
+        Queue<Integer> q = new LinkedList<>();
         for (int i = 0; i < numCourses; i++) {
             edges.add(new ArrayList<>());
         }
