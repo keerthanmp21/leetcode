@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class word_ladder {
     
 }
@@ -27,16 +29,16 @@ class Solution {
         while(!q.isEmpty()){
             int size = q.size();
             for(int k = 0; k < size; k++){
-                String word = q.poll();
-                if(word.equals(endWord)){
+                String curWord = q.poll();
+                if(curWord.equals(endWord)){
                     return res;
                 }
-                for(int i = 0; i < word.length(); i++){
-                    String pattern = word.substring(0, i) + '*' + word.substring(i + 1);
-                    for(String adjWord : adjList.getOrDefault(pattern, new ArrayList<>())){
-                        if(!visited.contains(adjWord)){
-                            visited.add(adjWord);
-                            q.add(adjWord);
+                for(int i = 0; i < curWord.length(); i++){
+                    String pattern = curWord.substring(0, i) + '*' + curWord.substring(i + 1);
+                    for(String neiWord : adjList.getOrDefault(pattern, new ArrayList<>())){
+                        if(!visited.contains(neiWord)){
+                            visited.add(neiWord);
+                            q.add(neiWord);
                         }
                     }
                 }
