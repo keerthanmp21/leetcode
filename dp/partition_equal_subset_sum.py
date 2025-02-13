@@ -48,6 +48,28 @@ class Solution:
 
         return helper(len(nums), total // 2)
 
+    def canPartition(self, nums: List[int]) -> bool:
+        total = sum(nums)
+        target = total // 2
+        if total % 2 != 0:
+            return False
+        dp = {}
+
+        def helper(n, total):
+            if total == 0:
+                return True
+            if n == 0 and total != 0:
+                return False
+            if (n, total) in dp:
+                return dp[(n, total)]
+            if nums[n - 1] > total:
+                dp[(n, total)] = helper(n - 1, total)
+                return dp[(n, total)]
+            dp[(n, total)] = helper(n - 1, total - nums[n - 1]) or helper(n - 1, total)
+            return dp[(n, total)]
+
+        return helper(len(nums), target)
+    
     # dp tabulation
     # tc O(n^2), sc O(n^2)
     def canPartition3(self, nums: List[int]) -> bool:
