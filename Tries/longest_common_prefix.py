@@ -4,33 +4,86 @@ class TrieNode:
     def __init__(self):
         self.children = {}
 
-class Trie:
+class Trie1:
     def __init__(self):
         self.root = TrieNode()
-        self.res = ''
-    def insert(self, word, length):
+        self.res = ""
+
+    def insert(self, word, N):
         cur = self.root
         for c in word:
             if c in cur.children:
                 cur.children[c][1] += 1
             else:
-                cur.children[c] = [TrieNode(),1]
-            if cur.children[c][1] == length:
+                cur.children[c] = [TrieNode(), 1] 
+            if cur.children[c][1] == N:
                 self.res += c
             cur = cur.children[c][0]
 
+class Trie2:
+    def __init__(self):
+        self.children = {}
+        self.res = ""
+
+    def insert(self, word, N):
+        cur = self.children
+        for c in word:
+            if c in cur:
+                cur[c][1] += 1
+            else:
+                cur[c] = [{}, 1] 
+            if cur[c][1] == N:
+                self.res += c
+            cur = cur[c][0]
+
+class Trie:
+    def __init__(self):
+        self.children = [None] * 26
+        self.res = ""
+
+    def insert(self, word, N):
+        cur = self.children
+        for c in word:
+            ind = ord(c) - ord('a')
+            if c in cur:
+                cur[ind][1] += 1
+            else:
+                cur[ind] = [[None] * 26, 1] 
+            
+            if cur[ind][1] == N:
+                self.res += c
+            cur = cur[ind][0]
+
+class Trie:
+    def __init__(self):
+        self.children = {}
+        self.res = ""
+
+    def insert(self, word, N):
+        cur = self.children
+        for c in word:
+            if c in cur:
+                cur[c][1] += 1
+            else:
+                cur[c] = [{}, 1] 
+            if cur[c][1] == N:
+                self.res += c
+            cur = cur[c][0]
+
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
-        if len(strs) == 1:
-            return strs[0]
-        length = len(strs)
-        t = Trie()
+        N = len(strs)
+        if N == 0:
+            return ""
+
+        trie = Trie()
         for word in strs:
-            if word == '':
-                return ''
-            t.insert(word,length)
-        return t.res
-    
+            if word == "":
+                return ""
+            trie.insert(word, N)
+
+        return trie.res
+       
 '''
 To analyze the time and space complexity of the provided Trie implementation for 
 finding the longest common prefix, let's break it down step-by-step.
