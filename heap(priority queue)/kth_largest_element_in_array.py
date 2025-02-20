@@ -19,3 +19,8 @@ class Solution:
     def findKthLargest2(self, nums: List[int], k: int) -> int:
         nums.sort()
         return nums[len(nums) - k]
+
+    def findKthLargest3(self, nums: List[int], k: int) -> int:
+        minHeap = nums
+        heapq.heapify(minHeap)
+        return heapq.nlargest(k, minHeap)[-1]
