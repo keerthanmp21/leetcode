@@ -14,3 +14,18 @@ class Solution:
                 return mid
             else:
                 return mid + 1
+            
+    def mySqrt(self, x: int) -> int:
+        if x in [0,1]:
+            return x
+        l, r = 0, x
+        while l <= r:
+            mid = (l + r) // 2
+            if x < mid * mid:
+                r = mid - 1
+            elif x > mid * mid:
+                l = mid + 1
+            else:
+                return mid
+
+        return r
