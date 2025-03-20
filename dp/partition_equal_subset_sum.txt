@@ -1,0 +1,274 @@
+
+The given class `Solution` implements two approaches to solving the **Partition Equal Subset Sum** problem.
+
+---
+
+## **Problem Statement**
+Given an integer array `nums`, determine if it can be partitioned into two subsets with equal sums.
+
+### **Key Observations:**
+1. If the sum of `nums` is **odd**, it is **impossible** to split it into two equal subsets → **Return False**.
+2. If the sum is **even**, check whether there exists a subset whose sum equals `total // 2` (i.e., **Subset Sum Problem**).
+
+---
+
+## **Method 1: Naïve Recursion (`canPartition1`)**
+### **Explanation:**
+- Compute the total sum of the array. If it is **odd**, return `False`.
+- Use recursion to check whether a subset summing to `total // 2` exists.
+- At each step:
+  - If `total == 0`, return `True` (subset found).
+  - If `n == 0` and `total != 0`, return `False` (no subset possible).
+  - If `nums[n-1] > total`, exclude it.
+  - Otherwise, either **include** or **exclude** `nums[n-1]` and check if any leads to `True`.
+
+### **Time Complexity:**
+- The recursion generates an **exponential** number of function calls.
+- The worst-case time complexity is **O(2^N)**, where `N` is the number of elements.
+
+### **Space Complexity:**
+- The recursive stack depth can be **O(N)** in the worst case.
+
+---
+
+## **Method 2: Memoized Recursion (`canPartition`)**
+### **Explanation:**
+- Uses the same recursive approach but **stores** computed results in a dictionary `dp` to **avoid recomputation**.
+- If `(n, total)` is already computed, return the stored result.
+- This converts the exponential recursion into **polynomial time**.
+
+### **Time Complexity:**
+- There are at most `N × (total // 2)` unique subproblems.
+- This results in **O(N × total//2) ≈ O(N × sum(nums))**.
+
+### **Space Complexity:**
+- The memoization table `dp` stores `O(N × total//2)` values.
+- The recursion stack still takes **O(N)** space.
+- Total space complexity is **O(N × sum(nums))**.
+
+---
+
+## **Optimized Approach: Bottom-Up Dynamic Programming**
+A more efficient approach is to use **iterative DP with a 1D array**:
+
+### **Steps:**
+1. Compute the `target = sum(nums) // 2`.
+2. Use a **boolean DP array `dp[target + 1]`**, where `dp[i]` is `True` if a subset sum of `i` is possible.
+3. Initialize `dp[0] = True` (sum of 0 is always possible).
+4. Iterate over numbers and update `dp` in **reverse** (to avoid overwriting needed values).
+
+### **Code:**
+```python
+from typing import List
+
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        total = sum(nums)
+        if total % 2 != 0:
+            return False
+        target = total // 2
+        dp = [False] * (target + 1)
+        dp[0] = True
+
+        for num in nums:
+            for j in range(target, num - 1, -1):
+                dp[j] = dp[j] or dp[j - num]
+
+        return dp[target]
+```
+
+### **Time Complexity:**
+- **O(N × sum(nums)/2) ≈ O(N × sum(nums))**.
+
+### **Space Complexity:**
+- **O(sum(nums)/2) ≈ O(sum(nums))**, reduced to **O(target)**.
+
+---
+
+## **Comparison of Approaches**
+| Approach  | Time Complexity | Space Complexity | Efficiency |
+|-----------|----------------|------------------|------------|
+| **Naïve Recursion** | O(2^N) | O(N) (stack calls) | ❌ Slowest |
+| **Memoized Recursion** | O(N × sum(nums)) | O(N × sum(nums)) | ✅ Efficient |
+| **Bottom-Up DP (1D Array)** | O(N × sum(nums)) | O(sum(nums)/2) | 🚀 Best |
+
+### **Best Approach:**
+- **Iterative DP (`O(N × sum(nums))`)** with **1D optimization (`O(sum(nums)/2)`)** is the fastest and most memory-efficient.
+
+Let me know if you need further explanation! 🚀
+Let's go through the **Partition Equal Subset Sum** problem step by step and explain the different approaches.
+
+---
+
+# **Problem Understanding**
+Given an array `nums`, determine whether we can partition it into **two subsets with equal sum**.
+
+### **Key Observations**
+1. If the total sum of `nums` is **odd**, it's **impossible** to divide it equally → **Return False**.
+2. If the total sum is **even**, our goal is to **find a subset that sums to `total // 2`**.
+3. This is equivalent to a **Subset Sum Problem**, where we check if a subset exists with a sum of `target = total // 2`.
+
+---
+
+# **Method 1: Naïve Recursion (`canPartition1`)**
+### **Code:**
+```python
+from typing import List
+
+class Solution:
+    def canPartition1(self, nums: List[int]) -> bool:
+        total = sum(nums)
+        target = total // 2
+        if total % 2 != 0:
+            return False  # If sum is odd, can't split equally
+
+        def helper(n, total):
+            if total == 0:
+                return True  # Found a subset
+            if n == 0 and total != 0:
+                return False  # No elements left but sum not reached
+            
+            if nums[n - 1] > total:
+                return helper(n - 1, total)  # Skip current element
+
+            return helper(n - 1, total - nums[n - 1]) or helper(n - 1, total)
+
+        return helper(len(nums), target)
+```
+
+### **How it Works**
+- **Base Case 1:** If `total == 0`, we found a subset → Return `True`.
+- **Base Case 2:** If no elements left (`n == 0`) and `total != 0`, no subset exists → Return `False`.
+- If `nums[n-1] > total`, we **skip** it.
+- Otherwise, we **include** or **exclude** `nums[n-1]` and check if either case returns `True`.
+
+### **Example**
+#### **Input:**  
+`nums = [1, 5, 11, 5]`
+
+#### **Recursive Calls:**
+```
+helper(4, 11)
+    → helper(3, 6) (include nums[3]=5)
+        → helper(2, 1) (include nums[2]=5)
+            → helper(1, 1) (exclude nums[1]=5)
+                → helper(0, 0) ✅ (found subset)
+```
+#### **Output:** `True`
+
+### **Time Complexity:**
+- This function explores **2 choices (include/exclude) at each step**.
+- The time complexity is **O(2^N)** (exponential).
+
+### **Space Complexity:**
+- **O(N)** (recursive stack depth).
+
+---
+
+# **Method 2: Memoized Recursion (`canPartition`)**
+### **Code:**
+```python
+from typing import List
+
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        total = sum(nums)
+        target = total // 2
+        if total % 2 != 0:
+            return False
+        
+        dp = {}  # Memoization dictionary
+
+        def helper(n, total):
+            if total == 0:
+                return True
+            if n == 0 and total != 0:
+                return False
+            if (n, total) in dp:
+                return dp[(n, total)]  # Return stored result
+
+            if nums[n - 1] > total:
+                dp[(n, total)] = helper(n - 1, total)  # Skip element
+                return dp[(n, total)]
+
+            dp[(n, total)] = helper(n - 1, total - nums[n - 1]) or helper(n - 1, total)
+            return dp[(n, total)]
+
+        return helper(len(nums), target)
+```
+
+### **How it Works**
+- Uses the **same recursive approach**, but **stores computed results** in `dp` (dictionary).
+- Before making a recursive call, it checks if the result exists in `dp` to **avoid recomputation**.
+
+### **Time Complexity:**
+- Since each subproblem `(n, total)` is computed **only once**, the time complexity is **O(N × total//2)**.
+
+### **Space Complexity:**
+- **O(N × total//2)** for memoization.
+- **O(N)** for recursion depth.
+
+---
+
+# **Method 3: Bottom-Up Dynamic Programming (Optimized)**
+### **Code:**
+```python
+from typing import List
+
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        total = sum(nums)
+        if total % 2 != 0:
+            return False  # If sum is odd, partition is impossible
+        
+        target = total // 2
+        dp = [False] * (target + 1)  # Boolean DP array
+        dp[0] = True  # Base case: sum 0 is always possible
+
+        for num in nums:
+            for j in range(target, num - 1, -1):  # Iterate backward
+                dp[j] = dp[j] or dp[j - num]
+
+        return dp[target]
+```
+
+### **How it Works**
+1. Initialize `dp[target + 1]`, where `dp[j]` stores if a subset sum `j` is possible.
+2. **Base Case:** `dp[0] = True` (sum `0` is always achievable).
+3. **Loop through numbers** in `nums`:
+   - **For each number `num`**, update `dp[j]` **in reverse**:
+   - `dp[j] = dp[j] OR dp[j - num]`
+   - If `dp[target] == True`, return `True`.
+
+### **Example**
+#### **Input:**  
+`nums = [1, 5, 11, 5]`
+
+#### **Iterations**
+```
+num = 1  → dp = [True, True, False, False, False, False, False, False, False, False, False, False]
+num = 5  → dp = [True, True, False, False, False, True, True, False, False, False, False, False]
+num = 11 → dp = [True, True, False, False, False, True, True, False, False, False, False, True]
+num = 5  → dp = [True, True, False, False, False, True, True, False, False, False, True, True]
+```
+Since `dp[11] == True`, return `True`.
+
+### **Time Complexity:**
+- **O(N × sum(nums)/2) ≈ O(N × sum(nums))**.
+
+### **Space Complexity:**
+- **O(target) ≈ O(sum(nums)/2)** (1D array instead of 2D table).
+
+---
+
+# **Comparison of Approaches**
+| Approach  | Time Complexity | Space Complexity | Efficiency |
+|-----------|----------------|------------------|------------|
+| **Naïve Recursion** | O(2^N) | O(N) | ❌ Slow |
+| **Memoized Recursion** | O(N × sum(nums)) | O(N × sum(nums)) | ✅ Faster |
+| **Bottom-Up DP (1D Array)** | O(N × sum(nums)) | O(sum(nums)/2) | 🚀 Best |
+
+### **Final Recommendation**
+- **Use Bottom-Up DP** → Most optimized **O(N × sum(nums)/2)** time and **O(sum(nums)/2)** space.
+
+Let me know if you need further clarifications! 🚀

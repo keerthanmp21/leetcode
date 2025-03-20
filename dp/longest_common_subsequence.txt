@@ -1,0 +1,68 @@
+The given class `Solution` implements three different approaches to solving the **Longest Common Subsequence (LCS)** problem.
+
+## **Method 1: Naïve Recursion (`longestCommonSubsequence1`)**
+### **Explanation:**
+- The function uses a recursive approach to compare characters in `text1` and `text2` from index `(i, j)`.
+- If characters match, it recursively calls `backtrack(i + 1, j + 1)`, adding `1` to the result.
+- If characters do not match, it takes the maximum of two recursive calls: `backtrack(i + 1, j)` and `backtrack(i, j + 1)`.
+- This method explores all possible subsequences, leading to redundant calculations.
+
+### **Time Complexity:**
+- Since each call makes at most **two recursive calls**, the recursion tree grows exponentially.
+- The worst-case time complexity is **O(2^(M+N))**, where `M` and `N` are the lengths of `text1` and `text2`.
+- This happens because in the worst case (completely different strings), the function generates all possible subsequences.
+
+### **Space Complexity:**
+- The recursion depth can go up to **O(M + N)** in the worst case.
+- Since there is no explicit memory storage, the space complexity is **O(M + N)** due to recursive stack calls.
+
+---
+
+## **Method 2: Memoized Recursion (`longestCommonSubsequence2`)**
+### **Explanation:**
+- This approach improves upon the naïve recursion by **storing previously computed results** in a dictionary (`dp`).
+- Before making a recursive call, it checks if the result is already in `dp`.
+- If yes, it returns the stored value instead of recomputing.
+
+### **Time Complexity:**
+- The recursion explores `(i, j)` pairs at most **once**, and there are `M × N` possible pairs.
+- This reduces the time complexity to **O(M × N)**, which is significantly better than the exponential approach.
+
+### **Space Complexity:**
+- The memoization table (`dp`) stores results for **O(M × N)** subproblems.
+- The recursion stack still takes up **O(M + N)** space.
+- Thus, the overall space complexity is **O(M × N) + O(M + N) = O(M × N)**.
+
+---
+
+## **Method 3: Bottom-Up Dynamic Programming (`longestCommonSubsequence`)**
+### **Explanation:**
+- Instead of using recursion, this method constructs a **DP table (`dp`)** iteratively.
+- `dp[i][j]` represents the LCS of `text1[i:]` and `text2[j:]`.
+- If `text1[i] == text2[j]`, then `dp[i][j] = 1 + dp[i+1][j+1]` (matching characters add 1 to the LCS).
+- Otherwise, take the max of ignoring either `text1[i]` or `text2[j]`:  
+  `dp[i][j] = max(dp[i][j+1], dp[i+1][j])`.
+
+### **Time Complexity:**
+- We fill up an `M × N` table iteratively.
+- The time complexity is **O(M × N)**.
+
+### **Space Complexity:**
+- The `dp` table has `M × N` entries, requiring **O(M × N)** space.
+- However, since each `dp[i][j]` only depends on the next row, we can optimize space to **O(N)** using a **rolling array technique**.
+  
+---
+
+## **Comparison of the Three Approaches**
+| Method | Time Complexity | Space Complexity | Approach Type |
+|--------|----------------|------------------|---------------|
+| **Naïve Recursion** | O(2^(M+N)) | O(M + N) | Exponential (Slow) |
+| **Memoized Recursion** | O(M × N) | O(M × N) | Optimized Recursion |
+| **Bottom-Up DP** | O(M × N) | O(M × N) (or O(N) with optimization) | Iterative DP (Efficient) |
+
+### **Best Choice:**
+- **Bottom-up DP** is the most efficient in terms of execution.
+- If space is a concern, **rolling array optimization** can reduce it to **O(N)**.
+- **Memoization** is useful when recursion-based solutions are easier to understand.
+
+Let me know if you need further clarifications! 🚀
