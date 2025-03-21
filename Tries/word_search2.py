@@ -14,6 +14,45 @@ class Trie:
         cur.isWord = True
 
 class Solution:
+    # TLE
+    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+        
+        res = []
+        for w in words:
+            if self.exist(board, w):
+                res.append(w)
+        return res
+
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        ROWS = len(board)
+        COLS = len(board[0])
+        N = len(word)
+        visited = set()
+        directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+
+        def dfs(r, c, i):
+            if i == N:
+                return True
+            if(r < 0 or r == ROWS or c < 0 or c == COLS or
+            (r, c) in visited or board[r][c] != word[i]):
+                return False
+
+            visited.add((r, c))
+            res = False
+            for dr, dc in directions:
+                res = res or dfs(r + dr, c + dc, i + 1)
+
+            visited.remove((r, c))
+            return res
+            
+
+        for r in range(ROWS):
+            for c in range(COLS):
+                if dfs(r, c, 0):
+                    return True
+
+        return False
+    
     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
         root = Trie()
         for w in words:
