@@ -9,10 +9,11 @@ class UnionFind:
         self.parent = list(range(n))
         self.rank = [1] * n  # Rank to optimize union
 
-    def find(self, x):
-        if self.parent[x] != x:
-            self.parent[x] = self.find(self.parent[x])  # Path compression
-        return self.parent[x]
+    def find(self, num):
+        while num != self.parent[num]:
+            self.parent[num] = self.parent[self.parent[num]]
+            num = self.parent[num]
+        return num # self.parent[num]
 
     def union(self, x, y):
         rootX = self.find(x)
