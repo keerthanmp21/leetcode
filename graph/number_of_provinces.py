@@ -1,6 +1,33 @@
 from typing import List
 from collections import deque
 
+from typing import List
+from collections import deque
+
+class UnionFind:
+    def __init__(self, n):
+        self.parent = list(range(n))
+        self.rank = [1] * n  # Rank to optimize union
+
+    def find(self, x):
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])  # Path compression
+        return self.parent[x]
+
+    def union(self, x, y):
+        rootX = self.find(x)
+        rootY = self.find(y)
+
+        if rootX != rootY:
+            # Union by rank
+            if self.rank[rootX] > self.rank[rootY]:
+                self.parent[rootY] = rootX
+            elif self.rank[rootX] < self.rank[rootY]:
+                self.parent[rootX] = rootY
+            else:
+                self.parent[rootY] = rootX
+                self.rank[rootX] += 1
+
 class Solution:
     # union find
     def findCircleNum2(self, isConnected: List[List[int]]) -> int:    
@@ -83,3 +110,18 @@ class Solution:
                 res += 1
 
         return res
+
+    # time complexity O(n^2)
+    def findCircleNum(self, isConnected: List[List[int]]) -> int:
+        N = len(isConnected)
+        uf = UnionFind(N)
+
+        # Process adjacency matrix and unite connected nodes
+        for i in range(N):
+            for j in range(i + 1, N):  # Avoid redundant checks (upper triangle)
+                if isConnected[i][j] == 1:
+                    uf.union(i, j)
+
+        
+        # Count unique provinces by checking root parents
+        return len(set(uf.find(i) for i in range(N)))
