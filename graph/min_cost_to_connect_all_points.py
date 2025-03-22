@@ -2,32 +2,90 @@ from typing import List
 from collections import defaultdict
 import heapq
 
+class UnionFind:
+    def __init__(self, n):
+        self.parent = list(range(n))
+        self.rank = [1] * n
+
+    def find(self, num):
+        while num != self.parent[num]:
+            self.parent[num] = self.parent[self.parent[num]]
+            num = self.parent[num]
+        return num
+
+    def union(self, a, b):
+        rootA = self.find(a)
+        rootB = self.find(b)
+
+        if rootA == rootB:
+            return False  # Already connected
+
+        if self.rank[rootA] > self.rank[rootB]:
+            self.parent[rootB] = rootA
+        elif self.rank[rootB] > self.rank[rootA]:
+            self.parent[rootA] = rootB
+        else:
+            self.parent[rootB] = rootA
+            self.rank[rootA] += 1
+        
+        return True
+
 class Solution:
-    def minCostConnectPoints(self, points: List[List[int]]) -> int:
-        ptLen = len(points)
-        adj_dict = defaultdict(list)
-        for i in range(ptLen):
+    # time complexity O(N² log N)
+    def minCostConnectPoints1(self, points: List[List[int]]) -> int:
+        adjList = defaultdict(list)
+        N = len(points)
+
+        for i in range(N):
             x1, y1 = points[i]
-            for j in range(i+1, ptLen):
+            for j in range(i + 1, N):
                 x2, y2 = points[j]
-                cost = abs(x1-x2) + abs(y1-y2)
-                adj_dict[i].append([cost, j])
-                adj_dict[j].append([cost,i])
+                cost = abs(x1 - x2) + abs(y1 - y2)
+                adjList[i].append([j, cost])
+                adjList[j].append([i, cost])
 
-        minHeap = [[0,0]]
-        visited = set()
+        minHeap = [[0, 0]]
         res = 0
+        visited = set()
 
-        while len(visited)<ptLen:
-            cost, node1 = heapq.heappop(minHeap)
-            if node1 in visited:
+        while len(visited) < N:
+            cost, node = heapq.heappop(minHeap)
+            if node in visited:
                 continue
             res += cost
-            visited.add(node1)
-            for neiCost, nei in adj_dict[node1]:
-                if nei not in visited:
-                    heapq.heappush(minHeap,[neiCost, nei])
-        
+            visited.add(node)
+            for neiNode, neiCost in adjList[node]:
+                if neiNode not in visited:
+                    heapq.heappush(minHeap, [neiCost, neiNode])
+
+        return res
+
+    # time complexity O(N² log N)
+    def minCostConnectPoints(self, points: List[List[int]]) -> int:
+        N = len(points)
+        edges = []
+
+        # Create all edges with their Manhattan distance as weight
+        for i in range(N):
+            x1, y1 = points[i]
+            for j in range(i + 1, N):
+                x2, y2 = points[j]
+                cost = abs(x1 - x2) + abs(y1 - y2)
+                edges.append((cost, i, j))
+
+        # Sort edges based on cost
+        edges.sort()
+        uf = UnionFind(N)
+        res, count = 0, 0
+
+        # Kruskal’s Algorithm
+        for cost, u, v in edges:
+            if uf.union(u, v):  # If successfully connected
+                res += cost
+                count += 1
+                if count == N - 1:  # Minimum Spanning Tree formed
+                    break
+
         return res
     
 '''
