@@ -2,10 +2,36 @@ from typing import List
 from functools import lru_cache
 
 
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.isEnd = False
+
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def addWord(self, word):
+        cur = self.root
+        for c in word:
+            if c not in cur.children:
+                cur.children[c] = TrieNode()
+            cur = cur.children[c]
+        cur.isEnd = True
+
+    def startsWith(self, prefix: str) -> bool:
+        cur = self.root
+        for c in prefix:
+            if c not in cur.children:
+                return False
+            cur = cur.children[c]
+        return True
+
+
 class Solution:
     # backtrack
     # tc O(2^n)
-    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+    def wordBreak1(self, s: str, wordDict: List[str]) -> bool:
         wordDictSet = set(wordDict)
         N = len(s)
 
@@ -73,3 +99,30 @@ class Solution:
                     break
 
         return dp[0]
+
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        t = Trie()
+        for word in wordDict:
+            t.addWord(word)
+
+        # Memoization dictionary
+        memo = {}
+
+        def canSegment(start):
+            if start == len(s):
+                return True
+            if start in memo:
+                return memo[start]
+            
+            # Try all possible substrings from the current position
+            for end in range(start + 1, len(s) + 1):
+                if t.startsWith(s[start:end]):  # Check if this is a valid prefix
+                    # If we find a word, try to segment the remaining part of the string
+                    if s[start:end] in wordDict and canSegment(end):
+                        memo[start] = True
+                        return True
+            
+            memo[start] = False
+            return False
+
+        return canSegment(0)
