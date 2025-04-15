@@ -1,4 +1,6 @@
-class DSU2:
+from typing import List
+
+class DSU:
     def __init__(self, n):
         self.parent = [i for i in range(n)]
         self.rank = [0] * (n)
